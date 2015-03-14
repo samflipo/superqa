@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .container
+    .loginForm
+      p.notice=notice
+      h2=title
+      form(action='/login', method='post') 
+        input(type='text', name='email', placeholder='Enter email', autofocus=true, required)
+        br
+        input(type='password', name='password', placeholder='Enter password', required)
+        br
+        button(type='submit') Login
+        
+      p: a(href='/register') Register

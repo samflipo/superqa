@@ -1,0 +1,40 @@
+extends ../../layout
+
+block content
+  .container
+    h3=title
+    if student
+      a(class="togglePayment" href="#") Add Payment
+      .paymentForm
+        form(name="payment" action="/payments/" + student._id method="post")
+          label Amount
+          input(type="number" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
+          label cash
+          input(type="checkbox" name="type" value="cash" checked placeholder="cash") 
+          label check
+          input(type="checkbox" name="type" value="check" placeholder="check")
+          button Add 
+      if payments
+        table
+          tr
+            th Date
+              th Amount
+            th Type
+            each payment in payments
+              tr
+                td=moment(payment.updatedAt).format("DD/MM/YYYY")
+                td="$" + payment.amount + ".00"
+                td=payment.type
+        
+        br
+        ="Student :" + student.firstName + student.lastName 
+        br
+        ="Phone : "+ student.phone
+        br
+        ="Email : "+ student.email
+        br
+        ="Address :" + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zipcode
+        
+        h4="Balance : $" + bal + ".00"
+        
+        button Print Recipt

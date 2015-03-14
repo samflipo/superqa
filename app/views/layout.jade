@@ -1,0 +1,20 @@
+doctype html
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/css/style.css')
+    script(src='/js/vendor/jquery.js')
+    script(src='/js/source/main.js')
+  body
+    .headerMenu
+      if user
+        ul
+          li: a(href='/') SuperQA
+          li: a(href='/accounts') Accounts
+          li: a(class='recruter' href='/logout') Logout
+      else
+        ul 
+        if !user
+          li: a(href='/login') Login
+          li: a(href='/register') Register
+    block content

@@ -1,0 +1,60 @@
+a, a:hover {
+  text-decoration: none;
+}
+table {
+  width: 100%;
+  text-align: left;
+}
+th, td {
+  border-bottom: 1px solid #d6d6d6;
+}
+
+.addStudent, .newAccount, .paymentForm {
+  display: none;
+}
+ body {
+   margin: 0px;
+ }
+
+.headerMenu {
+  width: 100%;
+  height: 50px;
+  background-color: rgb(108, 168, 108);
+  position: fixed;
+  top: 0px;
+  right: 0px;
+}
+
+.headerMenu li {
+  list-style: none;
+  float: left;
+  margin-right: 30px;
+}
+
+.container {
+  margin-top: 60px;
+  width: 100%;
+}
+
+.loginForm, .registrationForm {
+  text-align: center;
+  margin: auto;
+  width: 300px;
+  padding: 0 30px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+}
+
+.loginForm input, .registrationForm input {
+  width: 98%;
+  height: 25px;
+  margin-bottom: 10px;
+}
+
+.loginForm button, .registrationForm button {
+  width: 100%;
+  height: 30px;
+  margin: 0 auto;
+  background-color: rgb(108, 168, 108);
+  color: white;
+}

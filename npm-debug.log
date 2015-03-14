@@ -1,0 +1,55 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   'dollar-string' ]
+2 info using npm@2.5.1
+3 info using node@v0.12.0
+4 warn package.json rest-api-express@0.0.4 No repository field.
+5 silly cache add args [ 'dollar-string@*', null ]
+6 verbose cache add spec dollar-string@*
+7 silly cache add parsed spec { raw: 'dollar-string@*',
+7 silly cache add   scope: null,
+7 silly cache add   name: 'dollar-string',
+7 silly cache add   rawSpec: '*',
+7 silly cache add   spec: '*',
+7 silly cache add   type: 'range' }
+8 verbose addNamed dollar-string@*
+9 silly addNamed semver.valid null
+10 silly addNamed semver.validRange *
+11 silly addNameRange { name: 'dollar-string', range: '*', hasData: false }
+12 silly mapToRegistry name dollar-string
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://npm.interactive-apps.apple.com/
+15 silly mapToRegistry uri https://npm.interactive-apps.apple.com/dollar-string
+16 verbose addNameRange registry:https://npm.interactive-apps.apple.com/dollar-string not in flight; fetching
+17 verbose request uri https://npm.interactive-apps.apple.com/dollar-string
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 1:48:38 AM
+20 verbose request id 735ad32dbdabe46f
+21 http request GET https://npm.interactive-apps.apple.com/dollar-string
+22 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND npm.interactive-apps.apple.com
+23 info attempt registry request try #2 at 1:48:48 AM
+24 http request GET https://npm.interactive-apps.apple.com/dollar-string
+25 info retry will retry, error on last attempt: Error: getaddrinfo ENOTFOUND npm.interactive-apps.apple.com
+26 info attempt registry request try #3 at 1:49:48 AM
+27 http request GET https://npm.interactive-apps.apple.com/dollar-string
+28 verbose stack Error: getaddrinfo ENOTFOUND npm.interactive-apps.apple.com
+28 verbose stack     at errnoException (dns.js:44:10)
+28 verbose stack     at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:94:26)
+29 verbose cwd /Users/weldemariam/Projects/experiments/superqa
+30 error Darwin 14.0.0
+31 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "dollar-string"
+32 error node v0.12.0
+33 error npm  v2.5.1
+34 error code ENOTFOUND
+35 error errno ENOTFOUND
+36 error syscall getaddrinfo
+37 error network getaddrinfo ENOTFOUND npm.interactive-apps.apple.com
+37 error network This is most likely not a problem with npm itself
+37 error network and is related to network connectivity.
+37 error network In most cases you are behind a proxy or have bad network settings.
+37 error network
+37 error network If you are behind a proxy, please make sure that the
+37 error network 'proxy' config is set properly.  See: 'npm help config'
+38 verbose exit [ 1, true ]

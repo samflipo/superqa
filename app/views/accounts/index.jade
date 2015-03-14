@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+  .container
+    h3=title
+  
+  a.toggleAccount(href='#') New 
+  
+  .newAccount
+    h3=title
+    form(action='/accounts', method='post')
+      input(type='text', name='cohort', placeholder='enter cohort name', autofocus=true, required)
+      input(type='date', name='startDate', required)
+      input(type='date', name='endDate', required)
+      button(type='submit') Create Account
+  
+  if accounts  
+    table
+      tr
+        th Cohort
+        th Start
+        th End
+        th Last Updated
+        each account in accounts
+          tr
+            td: a(href="accounts/"+account._id)=account.cohort
+            td=moment(account.startDate).format("DD/MM/YYYY")
+            td=moment(account.endDate).format("DD/MM/YYYY")
+            td=moment(account.updatedAt).fromNow()
+    

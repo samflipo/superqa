@@ -1,0 +1,45 @@
+extends ../layout
+
+block content 
+  .container
+    h3= title
+    a(class="toggle" href="#") Add Student
+    .addStudent
+      form(name="student" action=account._id + "/students" method="post")
+        input(type="text" name="firstName" placeholder="firstname") 
+        input(type="text" name="lastName" placeholder="lastname") 
+        input(type="text" name="phone" placeholder="Phone") 
+        input(type="email" name="email" placeholder="email") 
+        input(type="text" name="street" placeholder="street") 
+        input(type="text" name="city" placeholder="city")
+        input(type="text" name="state" placeholder="state")
+        input(type="zip" name="zip" placeholder="zipcode")
+        button Add 
+           
+    if account  
+      table
+        tr
+          th Cohort
+          th Start
+          th End
+          th Last Updated
+        tr
+          td=account.cohort
+          td=moment(account.startDate).format("DD/MM/YYYY")
+          td=moment(account.endDate).format("DD/MM/YYYY")
+          td=moment(account.updatedAt).fromNow()
+          
+    // List of students go below
+    if students  
+      table
+        tr
+          th Name
+          th Email
+          th Phone
+          th Payment
+          each student in students
+            tr
+              td=student.firstName + " " + student.lastName
+              td=student.email
+              td=student.phone
+              td: a(href="/students/" + student._id ) Payment
