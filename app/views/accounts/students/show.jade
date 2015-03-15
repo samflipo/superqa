@@ -2,39 +2,40 @@ extends ../../layout
 
 block content
   .container
-    h3=title
     if student
-      a(class="togglePayment" href="#") Add Payment
+      h4: a(class="togglePayment" href="#") Add Payment
+      br
       .paymentForm
         form(name="payment" action="/payments/" + student._id method="post")
-          label Amount
+          label: h4 Amount
           input(type="number" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
-          label cash
+          label: h4 cash
           input(type="checkbox" name="type" value="cash" checked placeholder="cash") 
-          label check
+          label: h4 check
           input(type="checkbox" name="type" value="check" placeholder="check")
           button Add 
+      h2=student.firstName + "'s account"
       if payments
         table
           tr
-            th Date
-              th Amount
-            th Type
+            th: h4 Date
+            th: h4 Amount
+            th: h4 Type
             each payment in payments
               tr
-                td=moment(payment.updatedAt).format("DD/MM/YYYY")
-                td="$" + payment.amount + ".00"
-                td=payment.type
+                td: p=moment(payment.updatedAt).format("DD/MM/YYYY")
+                td: p="$" + payment.amount + ".00"
+                td: p=payment.type
         
         br
-        ="Student :" + student.firstName + student.lastName 
         br
-        ="Phone : "+ student.phone
+        p="Student :" + student.firstName + student.lastName 
+        p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
+        p="Phone : "+ student.phone
+        p="Email : "+ student.email
+        p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zipcode
         br
-        ="Email : "+ student.email
+        h2="Balance : $" + bal + ".00"
         br
-        ="Address :" + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zipcode
-        
-        h4="Balance : $" + bal + ".00"
         
         button Print Recipt

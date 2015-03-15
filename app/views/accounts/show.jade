@@ -2,44 +2,46 @@ extends ../layout
 
 block content 
   .container
-    h3= title
-    a(class="toggle" href="#") Add Student
+    h4: a(class="toggle" href="#") Add Student
+    br
     .addStudent
       form(name="student" action=account._id + "/students" method="post")
-        input(type="text" name="firstName" placeholder="firstname") 
-        input(type="text" name="lastName" placeholder="lastname") 
-        input(type="text" name="phone" placeholder="Phone") 
-        input(type="email" name="email" placeholder="email") 
-        input(type="text" name="street" placeholder="street") 
-        input(type="text" name="city" placeholder="city")
-        input(type="text" name="state" placeholder="state")
-        input(type="zip" name="zip" placeholder="zipcode")
+        input(type="text" name="firstName" placeholder="firstname" required) 
+        input(type="text" name="lastName" placeholder="lastname" required) 
+        input(type="tel" name="phone" placeholder="Phone" required) 
+        input(type="email" name="email" placeholder="email" required) 
+        input(type="text" name="street" placeholder="street" required) 
+        input(class="half" type="text" name="city" placeholder="city" required)
+        input(class="half" type="text" name="state" placeholder="state" required)
+        input(class="half" type="text" name="zip" placeholder="zipcode" required)
+        br
         button Add 
-           
-    if account  
+       
+    if account 
+      h2=account.cohort  
       table
         tr
-          th Cohort
-          th Start
-          th End
-          th Last Updated
+          th: h4 Cohort
+          th: h4 Start
+          th: h4 End
+          th: h4 Last Updated
         tr
-          td=account.cohort
-          td=moment(account.startDate).format("DD/MM/YYYY")
-          td=moment(account.endDate).format("DD/MM/YYYY")
-          td=moment(account.updatedAt).fromNow()
+          td: p=account.cohort
+          td: p=moment(account.startDate).format("DD/MM/YYYY")
+          td: p=moment(account.endDate).format("DD/MM/YYYY")
+          td: p=moment(account.updatedAt).fromNow()
           
     // List of students go below
     if students  
       table
         tr
-          th Name
-          th Email
-          th Phone
-          th Payment
+          th: h4 Name
+          th: h4 Email
+          th: h4 Phone
+          th: h4 Payment
           each student in students
             tr
-              td=student.firstName + " " + student.lastName
-              td=student.email
-              td=student.phone
-              td: a(href="/students/" + student._id ) Payment
+              td: p=student.firstName + " " + student.lastName
+              td: p=student.email
+              td: p=student.phone
+              td: p: a(href="/students/" + student._id ) view

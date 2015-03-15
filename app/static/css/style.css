@@ -1,12 +1,72 @@
-a, a:hover {
+html, body, * {
+  margin: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  transition: border-color .2s ease, background-color .2s ease, opacity .2s ease, color .2s ease, -webkit-transform .2s ease;
+  font-family: Helvetica;
+}
+a {
+  cursor: pointer;
   text-decoration: none;
 }
+
+a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #667782;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+h1, h2, h3, h4 { margin: 0; }
+h1 {
+  @extend .bold;
+  display: inline-block;
+  font-size: 20px;
+}
+
+h2 {
+  font-weight: 300;
+  font-size: 30px;
+  color: #c3c3c3;
+}
+
+h3 {
+  font-weight: 700;
+  font-size: 18px;
+  color: #667782;
+}
+
+h4 {
+  font-weight: 300;
+  font-size: 16px;
+  color: #667782;
+}
+
+p {
+  font-weight: 300;
+  font-size: 14px;
+  padding-bottom: 10px;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  margin-top: 60px;
+  margin-left: 10px;
+}
+
 table {
   width: 100%;
   text-align: left;
+  margin-top: 20px;
 }
 th, td {
   border-bottom: 1px solid #d6d6d6;
+  padding-top: 10px;
 }
 
 .addStudent, .newAccount, .paymentForm {
@@ -19,39 +79,107 @@ th, td {
 .headerMenu {
   width: 100%;
   height: 50px;
-  background-color: rgb(108, 168, 108);
+  background-color: rgba(108, 168, 108, 0.9);
   position: fixed;
   top: 0px;
   right: 0px;
+  z-index: 9;
 }
-
+.headerMenu ul {
+  padding-left: 10px;
+  padding-top: 15px;
+}
 .headerMenu li {
   list-style: none;
   float: left;
   margin-right: 30px;
 }
 
-.container {
-  margin-top: 60px;
-  width: 100%;
-}
-
-.loginForm, .registrationForm {
+.loginForm {
   text-align: center;
   margin: auto;
   width: 300px;
+  height: 230px;
   padding: 0 30px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+ .registrationForm {
+  text-align: center;
+  margin: auto;
+  width: 300px;
+  height: 270px;
+  padding: 0 30px;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  position: absolute;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.newAccount {
+ text-align: center;
+ margin:  auto auto 30px auto;
+ width: 300px;
+ height: 175px;
+ padding: 20px 30px;
+ border: 1px solid #d6d6d6;
+ border-radius: 8px;
+}
+
+.addStudent {
+ text-align: center;
+ margin:  auto auto 30px auto;
+ width: 300px;
+ height: 320px;
+ padding: 20px 30px;
+ border: 1px solid #d6d6d6;
+ border-radius: 8px;
+}
+
+.paymentForm {
+  text-align: center;
+  margin:  auto auto 30px auto;
+  width: 300px;
+  height: 210px;
+  padding: 20px 30px;
   border: 1px solid #d6d6d6;
   border-radius: 8px;
 }
 
-.loginForm input, .registrationForm input {
+.loginForm input, .registrationForm input, .addStudent input, .newAccount input {
   width: 98%;
   height: 25px;
   margin-bottom: 10px;
 }
 
-.loginForm button, .registrationForm button {
+.paymentForm form input:nth-child(2) {
+  width: 98%;
+  height: 25px;
+  margin-bottom: 10px;
+}
+
+.paymentForm form input:nth-child(6) {
+  padding-left: 30px;
+  margin-bottom: 20px;
+}
+
+.addStudent .half {
+  width: 94px;
+}
+
+.addStudent .half:nth-child(2) {
+  margin: 0 20px;
+}
+
+.loginForm button, .registrationForm button, .newAccount button, .addStudent button, .paymentForm button {
   width: 100%;
   height: 30px;
   margin: 0 auto;

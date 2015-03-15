@@ -7,14 +7,12 @@ html
     script(src='/js/source/main.js')
   body
     .headerMenu
-      if user
-        ul
-          li: a(href='/') SuperQA
-          li: a(href='/accounts') Accounts
-          li: a(class='recruter' href='/logout') Logout
-      else
-        ul 
-        if !user
-          li: a(href='/login') Login
-          li: a(href='/register') Register
+      ul
+        if user
+          li: h4: a(href='/') SuperQA
+          li: h4: a(href='/accounts') Accounts
+          li: h4: a(class='recruter' href='/logout') Logout
+        else
+          li: h4: a(href='/login') Login
+          li: h4: a(href='/register') Register
     block content
