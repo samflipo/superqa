@@ -10,3 +10,7 @@ exports.create = function(req, res){
     res.redirect("/students/" + req.params.id);
   });
 };
+
+exports.update = function(req, res){
+  console.log(req.body);
+}

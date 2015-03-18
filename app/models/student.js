@@ -25,8 +25,8 @@ Student.prototype.insert = function(fn){
   });
 };
 
-Student.prototype.update = function(fn){
-  students.update({ _id:this._id}, this, function (err, count){
+Student.prototype.update = function(id, fn){
+  students.update({ _id: new ObjectID(id) }, this, { upsert: true }, function (err, count){
     fn(count);
   });
 };
@@ -46,5 +46,11 @@ Student.findAll = function(fn){
 Student.findById = function(id, fn){
   students.findOne({_id: new ObjectID(id)}, function(err, record){
     fn(record);
+  });
+};
+
+Student.removeById = function(id, fn){
+  students.remove({_id: new ObjectID(id)}, function(err, count){
+    fn(count);
   });
 };

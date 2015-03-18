@@ -3,7 +3,7 @@ extends ../../layout
 block content
   .container
     if student
-      h4: a(class="togglePayment" href="#") Add Payment
+      h4: a(class="togglePayment" href="#") <i class="fa fa-plus"></i> Payment
       br
       .paymentForm
         form(name="payment" action="/payments/" + student._id method="post")

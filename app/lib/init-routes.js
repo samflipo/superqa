@@ -33,9 +33,12 @@ function load(app, fn){
   app.post('/accounts', d, accounts.create);
 
   app.get('/students/:id', d, students.show);
+  app.get('/student/:id', d, students.send);
+  app.delete('/students/:id', d, students.destroy);
   app.post('/accounts/:id/students', d, students.create);
 
   app.post('/payments/:id', d, payments.create);
+  app.put('/payments/:id', d, payments.update);
 
   console.log('Routes loaded');
   fn();
