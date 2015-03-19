@@ -20,8 +20,8 @@ Account.prototype.insert = function(fn){
   });
 };
 
-Account.prototype.update = function(fn){
-  accounts.update({ _id:this._id}, this, function (err, count){
+Account.prototype.update = function(id, fn){
+  accounts.update({ _id: new ObjectID(id)}, this, function (err, count){
     fn(count);
   });
 };
@@ -35,5 +35,11 @@ Account.findAll = function(fn){
 Account.findById = function(id, fn){
   accounts.findOne({_id: new ObjectID(id)}, function(err, record){
     fn(record);
+  });
+};
+
+Account.removeById = function(id, fn){
+  accounts.remove({_id: new ObjectID(id)}, function(err, count){
+    fn(count);
   });
 };

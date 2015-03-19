@@ -28,8 +28,10 @@ function load(app, fn){
   app.get('/logout', d, users.logout);
   app.get('/users/show', d, users.show);
 
+  app.get('/account/:id', d, accounts.send);
   app.get('/accounts', d, accounts.index);
   app.get('/accounts/:id', d, accounts.show);
+  app.delete('/accounts/:id', d, accounts.destroy);
   app.post('/accounts', d, accounts.create);
 
   app.get('/students/:id', d, students.show);
@@ -38,7 +40,6 @@ function load(app, fn){
   app.post('/accounts/:id/students', d, students.create);
 
   app.post('/payments/:id', d, payments.create);
-  app.put('/payments/:id', d, payments.update);
 
   console.log('Routes loaded');
   fn();

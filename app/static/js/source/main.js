@@ -8,7 +8,24 @@
     $( ".toggleAccount").click(toggleAccountForm);
     $( ".togglePayment").click(togglePaymentForm);
     $( ".studentList tr" ).on("dblclick", editStudent);
+    $( ".accountList tr" ).on("dblclick", editAccount);
     $( ".editRemove a" ).on("click", removeStudent);
+    $( ".editAccount a" ).on("click", removeAccount);
+  }
+
+  function removeAccount(){
+    if ($(this).attr("class") === "removeAccount"){
+      var result = confirm("Are you sure you want to delete this Account?")
+      if (result){
+        var accountId = $(this).data("id").replace(/(^"|"$)/g, '');
+        var url = window.location.origin + "/accounts/" + accountId;
+        $.ajax({
+        url: url,
+        type: 'DELETE',
+        success: confirmRemove
+        });
+      }
+    }
   }
 
   function removeStudent(){
@@ -30,15 +47,33 @@
     window.location.reload();
   }
 
+  function editAccount(){
+    $(".newAccount").toggle();
+    var accountId = $( this ).data("accountid");
+    accountId = accountId.replace(/(^"|"$)/g, '');
+    var url = window.location.origin + "/account/" + accountId;
+    $.getJSON(url, editAccountForm);
+  }
+
   function editStudent(){
     $(".addStudent").toggle();
     var studentId = $( this ).data("studentid");
     studentId = studentId.replace(/(^"|"$)/g, '');
     var url = window.location.origin + "/student/" + studentId;
-    $.getJSON(url, editForm);
+    $.getJSON(url, editStudentForm);
   }
 
-  function editForm(data){
+  function editAccountForm(data){
+    data = data.data;
+    var moment = data.moment;
+    $(".id").val(data._id);
+    $(".cohort").val(data.cohort);
+    $(".startDate").val(data.startDate);
+    $(".endDate").val(data.endDate);
+    $(".addAccount button").text("Save");
+  }
+
+  function editStudentForm(data){
     data = data.data;
     $(".id").val(data._id);
     $(".firstName").val(data.firstName);

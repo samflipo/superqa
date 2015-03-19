@@ -9,7 +9,7 @@ a {
   cursor: pointer;
   text-decoration: none;
 }
-.editRemove a{
+.editRemove a, .editAccount a, .editPayment a{
   margin-right: 5px;
 }
 
@@ -19,7 +19,7 @@ a:hover {
   color: #667782;
 }
 
-.studentList tbody tr:hover {
+.studentList tbody tr:hover, .accountList tbody tr:hover, .paymentList tbody tr:hover {
   background-color: #EEF8F1;
 }
 
@@ -107,7 +107,7 @@ th, td {
   text-align: center;
   margin: auto;
   width: 300px;
-  height: 230px;
+  height: 190px;
   padding: 0 30px;
   border: 1px solid #d6d6d6;
   border-radius: 8px;
@@ -121,7 +121,7 @@ th, td {
   text-align: center;
   margin: auto;
   width: 300px;
-  height: 270px;
+  height: 226px;
   padding: 0 30px;
   border: 1px solid #d6d6d6;
   border-radius: 8px;
@@ -163,7 +163,7 @@ th, td {
 }
 
 .loginForm input, .registrationForm input, .addStudent input, .newAccount input {
-  width: 98%;
+  width: 88%;
   height: 25px;
   margin-bottom: 10px;
 }

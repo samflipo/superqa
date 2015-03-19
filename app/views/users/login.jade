@@ -4,12 +4,16 @@ block content
   .container
     .loginForm
       p.notice=notice
-      h2=title
-      form(action='/login', method='post') 
+      h3=title
+      br
+      form(action='/login', method='post')
+        <i class="fa fa-envelope-o"></i> 
         input(type='text', name='email', placeholder='Enter email', autofocus=true, required)
-        br
+        <i class="fa fa-key"></i>
         input(type='password', name='password', placeholder='Enter password', required)
         br
         button(type='submit') Login
+        br
+        br
         
       p: a(href='/register') Register

@@ -16,16 +16,21 @@ block content
           button Add 
       h2=student.firstName + "'s account"
       if payments
-        table
+        table(class="paymentList")
           tr
             th: h4 Date
             th: h4 Amount
             th: h4 Type
+            th: h4 Update
             each payment in payments
-              tr
+              tr(data-paymentId=payment._id)
                 td: p=moment(payment.updatedAt).format("DD/MM/YYYY")
                 td: p="$" + payment.amount + ".00"
                 td: p=payment.type
+                td: p.editPayment
+                  a(href="/payments/" + payment._id ): <i class="fa fa-eye"></i>
+                  a(href="#") |
+                  a.removePayment(href="#" data-id=payment._id): <i class="fa fa-trash-o"></i>
         
         br
         br
