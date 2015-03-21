@@ -21,8 +21,8 @@ Payment.prototype.insert = function(fn){
   });
 };
 
-Payment.prototype.update = function(fn){
-  payments.update({ _id:this._id}, this, function (err, count){
+Payment.prototype.update = function(id, fn){
+  payments.update({ _id: new ObjectID(id)}, this, function (err, count){
     fn(count);
   });
 };
@@ -43,6 +43,12 @@ Payment.findByStudentId = function(id, fn){
   payments.find({studentId: id}).toArray(function(err, records){
     var balance = checkBalance(records);
     fn(records, balance);
+  });
+};
+
+Payment.removeById = function(id, fn){
+  payments.remove({_id: new ObjectID(id)}, function(err, count){
+    fn(count);
   });
 };
 

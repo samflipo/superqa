@@ -1,0 +1,22 @@
+extends ../../layout
+
+block content
+  .container
+    h2=title
+    if students  
+      table
+        tr
+          th: h4 Full Name
+          th: h4 Cohort
+          th: h4 Tel
+          th: h4 Email
+          th: h4 Address
+          each student in students
+            tr
+              td: p=student.firstName + " " + student.lastName
+              each account in accounts
+                if account._id.toString() === student.accountId
+                  td: p=account.cohort
+              td: p=student.phone
+              td: p=student.email
+              td: p=student.street +" - "+ student.city +", "+ student.state +" "+ student.zip

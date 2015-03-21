@@ -7,13 +7,14 @@ block content
       br
       .paymentForm
         form(name="payment" action="/payments/" + student._id method="post")
+          input(type="hidden" class="id" name="_id" value="")
           label: h4 Amount
-          input(type="number" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
+          input(type="number" class="amount" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
           label: h4 cash
-          input(type="checkbox" name="type" value="cash" checked placeholder="cash") 
+          input(type="checkbox" class="cash" name="type" value="cash" checked placeholder="cash") 
           label: h4 check
-          input(type="checkbox" name="type" value="check" placeholder="check")
-          button Add 
+          input(type="checkbox" class="check" name="type" value="check" placeholder="check")
+          button(class="addPayment") Add 
       h2=student.firstName + "'s account"
       if payments
         table(class="paymentList")
@@ -30,7 +31,7 @@ block content
                 td: p.editPayment
                   a(href="/payments/" + payment._id ): <i class="fa fa-eye"></i>
                   a(href="#") |
-                  a.removePayment(href="#" data-id=payment._id): <i class="fa fa-trash-o"></i>
+                  a.removePayment(href="#" data-id=payment._id, data-studentId=payment.studentId): <i class="fa fa-trash-o"></i>
         
         br
         br
@@ -38,7 +39,7 @@ block content
         p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
         p="Phone : "+ student.phone
         p="Email : "+ student.email
-        p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zipcode
+        p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
         br
         h2="Balance : $" + bal + ".00"
         br

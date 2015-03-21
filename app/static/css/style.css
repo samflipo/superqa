@@ -19,6 +19,10 @@ a:hover {
   color: #667782;
 }
 
+.amount {
+  width: 100px;
+}
+
 .studentList tbody tr:hover, .accountList tbody tr:hover, .paymentList tbody tr:hover {
   background-color: #EEF8F1;
 }

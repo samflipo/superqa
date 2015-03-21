@@ -4,7 +4,7 @@ var _ = require('lodash');
 module.exports = function(req, res, next){
 
   var path = url.parse(req.url).pathname;
-  var urls = ['/', '/register', '/login'];
+  var urls = ['/register', '/login'];
 
   if(_.contains(urls, path)){
     next();
@@ -12,7 +12,7 @@ module.exports = function(req, res, next){
     if( req.session.userId){
       next();
     } else {
-      res.redirect('/');  
+      res.redirect('/login');
     }
   }
 };

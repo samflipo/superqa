@@ -9,9 +9,32 @@
     $( ".togglePayment").click(togglePaymentForm);
     $( ".studentList tr" ).on("dblclick", editStudent);
     $( ".accountList tr" ).on("dblclick", editAccount);
+    $( ".paymentList tr" ).on("dblclick", editPayment);
     $( ".editRemove a" ).on("click", removeStudent);
     $( ".editAccount a" ).on("click", removeAccount);
+    $( ".editPayment a" ).on("click", removePayment);
   }
+
+
+  function removePayment(){
+    if ($(this).attr("class") === "removePayment"){
+      var result = confirm("Are you sure you want to delete this Payment?")
+      if (result){
+        var paymentId = $(this).data("id").replace(/(^"|"$)/g, '');
+        var studentId = $(this).data("studentid").replace(/(^"|"$)/g, '');
+        var url = window.location.origin + "/payments/" + paymentId + "/" + studentId;
+        console.log("PAYMENT ID", paymentId);
+        console.log("STUDENT ID", studentId);
+        console.log("BEFORE SENDING", url);
+        $.ajax({
+          url: url,
+          type: 'DELETE',
+          success: confirmRemove
+        });
+      }
+    }
+  }
+
 
   function removeAccount(){
     if ($(this).attr("class") === "removeAccount"){
@@ -47,6 +70,14 @@
     window.location.reload();
   }
 
+  function editPayment(){
+    $(".paymentForm").toggle();
+    var paymentId = $( this ).data("paymentid");
+    paymentId = paymentId.replace(/(^"|"$)/g, '');
+    var url = window.location.origin + "/payment/" + paymentId;
+    $.getJSON(url, editPaymentForm);
+  }
+
   function editAccount(){
     $(".newAccount").toggle();
     var accountId = $( this ).data("accountid");
@@ -61,6 +92,16 @@
     studentId = studentId.replace(/(^"|"$)/g, '');
     var url = window.location.origin + "/student/" + studentId;
     $.getJSON(url, editStudentForm);
+  }
+
+  function editPaymentForm(data){
+    data = data.data;
+    console.log(data);
+    $(".id").val(data._id);
+    $(".amount").val(data.amount);
+    $(".amount").attr("max", 2500);
+    $(".endDate").val(data.endDate);
+    $(".addAccount button").text("Save");
   }
 
   function editAccountForm(data){

@@ -34,12 +34,15 @@ function load(app, fn){
   app.delete('/accounts/:id', d, accounts.destroy);
   app.post('/accounts', d, accounts.create);
 
+  app.get('/payment/:id', d, payments.send);
+  app.post('/payments/:id', d, payments.create);
+  app.delete('/payments/:id/:studentId', d, payments.destroy);
+
   app.get('/students/:id', d, students.show);
+  app.get('/students', d, students.index);
   app.get('/student/:id', d, students.send);
   app.delete('/students/:id', d, students.destroy);
   app.post('/accounts/:id/students', d, students.create);
-
-  app.post('/payments/:id', d, payments.create);
 
   console.log('Routes loaded');
   fn();

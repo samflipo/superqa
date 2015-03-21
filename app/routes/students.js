@@ -5,7 +5,9 @@ var moment = require('moment');
 
 exports.index = function(req, res){
   Account.findAll(function(accounts){
-    res.render("accounts/index", {title: 'All Accounts', moment: moment, accounts: accounts});
+    Student.findAll(function(students){
+      res.render('accounts/students/index', {title: 'All Students', moment: moment, students: students, accounts: accounts});
+    });
   });
 };
 

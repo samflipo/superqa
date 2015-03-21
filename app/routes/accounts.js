@@ -46,7 +46,7 @@ exports.destroy = function(req, res){
       if(count){
         res.redirect("/accounts", {notice: "Account Removed successfully"});
       }else{
-        res.redirect("/accounts/", {notice: "Account was not found"});
+        res.redirect("/accounts", {notice: "Account was not found"});
       }
     });
   });
