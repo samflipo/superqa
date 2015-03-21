@@ -13,6 +13,10 @@ a {
   margin-right: 5px;
 }
 
+.notice {
+  color: red;
+}
+
 a:hover {
   cursor: pointer;
   text-decoration: underline;

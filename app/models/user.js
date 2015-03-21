@@ -33,6 +33,8 @@ User.prototype.register = function(confPass, fn){
         }
       });
     });
+  } else {
+    fn(false);
   }
 };
 

@@ -23,9 +23,6 @@
         var paymentId = $(this).data("id").replace(/(^"|"$)/g, '');
         var studentId = $(this).data("studentid").replace(/(^"|"$)/g, '');
         var url = window.location.origin + "/payments/" + paymentId + "/" + studentId;
-        console.log("PAYMENT ID", paymentId);
-        console.log("STUDENT ID", studentId);
-        console.log("BEFORE SENDING", url);
         $.ajax({
           url: url,
           type: 'DELETE',

@@ -27,7 +27,7 @@ exports.create = function(req, res){
   User.findByEmail(req.body.email, function(isUser){
     if(!isUser){
       var user = new User(req.body);
-
+      
       user.register(req.body.confirmPassword, function(rUser){
         if(rUser){
           req.session.regenerate(function(){
