@@ -40,5 +40,5 @@
   },
   "dependencies": {
     "express": "^4.9.8"
-  },
+  }
 }
