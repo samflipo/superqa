@@ -27,9 +27,9 @@ exports.create = function(req, res){
   User.findByEmail(req.body.email, function(isUser){
     if(!isUser){
       var user = new User(req.body);
-      
-      user.register(req.body.confirmPassword, function(rUser){
-        if(rUser){
+
+      user.register(function(rUser){
+        if(rUser._id){
           req.session.regenerate(function(){
             req.session.userId = rUser._id.toString();
             req.session.save(function(){
@@ -41,7 +41,7 @@ exports.create = function(req, res){
         }
       });
     } else {
-      res.render('users/fresh', {title: 'Register User', notice : 'Email already exists'});
+      res.render('users/fresh', {title: 'Register User', notice : 'User already exists'});
     }
   });
 };

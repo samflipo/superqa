@@ -9,33 +9,40 @@ module.exports = User;
 function User(opt){
   this.email = opt.email;
   this.password = opt.password;
+  this.confirmPassword = opt.confirmPassword;
   this.lastLogin = new Date();
   this.created = new Date();
   this.admin = true;
 }
 
-User.prototype.update = function(fn){
-  users.update({ _id:this._id}, this, function (err, count){
-    fn(count);
+User.prototype.update = function(id, fn){
+  users.update({ _id: new ObjectID(id) }, this, function (err, count){
+    if(count){
+      fn(count);
+    }
   });
 };
 
-User.prototype.register = function(confPass, fn){
+User.prototype.register = function(fn){
   var self = this;
-  if (self.password === confPass){
-    hashPassword(self.password, function(hashedPwd){
-      self.password = hashedPwd;
-      insert(self, function(record){
-        if(record){
-          fn(record[0]);
-        } else {
-          fn();
-        }
+  users.findOne({ email: self.email }, function(err, user){
+    if(user){
+      fn();
+    } else if (self.password === self.confirmPassword){
+      hashPassword(self.password, function(hashedPwd){
+        self.password = hashedPwd;
+        insert(self, function(record){
+          if(record){
+            fn(record[0]);
+          } else {
+            fn(err);
+          }
+        });
       });
-    });
-  } else {
-    fn(false);
-  }
+    } else {
+      fn(false);
+    }
+  });
 };
 
 User.findByEmailandPassword = function(email, password, fn){
