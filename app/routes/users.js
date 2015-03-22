@@ -1,10 +1,4 @@
 var User = require('../models/user.js');
-var appleConnect = require('apple-connect');
-var RadarClient = require('node-radar');
-var btoa = require('btoa');
-var www_authenticate = require('www-authenticate');
-var request = require('request');
-var https = require('https');
 var moment = require('moment');
 
 exports.fresh = function(req, res){

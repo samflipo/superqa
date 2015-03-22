@@ -1,6 +1,5 @@
 var initMongo = require('../lib/init-mongo.js');
 var users = initMongo.db.collection('users');
-var RadarClient = require('node-radar');
 var ObjectID = require('mongoskin').ObjectID;
 var bcrypt = require('bcrypt');
 

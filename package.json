@@ -15,7 +15,6 @@
     "mongoskin": "1.4.4",
     "morgan": "1.5.0",
     "jade": "*",
-    "apple-connect": "1.1.0",
     "btoa": "*",
     "moment": "*",
     "method-override": "*",
