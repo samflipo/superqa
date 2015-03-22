@@ -179,28 +179,4 @@ describe('User', function(){
       });
     });
   });
-
-  // describe('.findByAccountId', function(){
-  //   it('should find a users by accountId', function(done){
-  //     var u1 = new User({name: 'Sam', email:'sam@nomail.com', password:'1234', accounts: [], role:'member'});
-  //     var u2 = new User({name: 'Bob', email:'bob@nomail.com', password:'1234', accounts: [], role:'member'});
-  //     u1.register('', function(){
-  //       u2.register('', function(){
-  //         var a1 = new Account({name: 'rent', description:'sharing the rent of our apartment', ownerId:u2._id.toString(), members:[], logic:'0', update:[]});
-  //         a1.insert(function(){
-  //           a1.addMember(u1._id.toString(), function(){
-  //             a1.addMember(u2._id.toString(), function(){
-  //               User.findByAccountId(a1._id.toString(), function(users){
-  //                 console.log('====================+++++++++++++++++++=================');
-  //                 console.log(u1, u2, users);
-  //                 expect(users.length).to.deep.equal(2);
-  //                 done();
-  //               });
-  //             });
-  //           });
-  //         });
-  //       });
-  //     });
-  //   });
-  // });
 });
