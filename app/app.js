@@ -36,8 +36,7 @@ app.use(methodOverride(function(req, res){
 }));
 app.use(cookieParser());
 app.use(session({
-//  store: new RedisStore({host: 'localhost', port: 6379}),
-  store: new RedisStore({url: config.REDISCLOUD_URL})
+  store: new RedisStore({host: 'localhost', port: 6379}),
   secret: 'change-this-to-a-super-secret-message',
   resave: false,
   saveUninitialized: true,
