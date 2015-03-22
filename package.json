@@ -4,7 +4,7 @@
   "description": "Student management system",
   "main": "express.js",
   "scripts": {
-    "start": "node express.js",
+    "start": "node app/app.js",
     "test": "mocha express.test.js"
   },
   "author": "Samuel Weldemariam",
