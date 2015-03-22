@@ -1,5 +1,5 @@
 {
-  "name": "superQA enternal",
+  "name": "superqa",
   "version": "0.0.1",
   "description": "Student management system",
   "main": "express.js",
@@ -37,8 +37,5 @@
   },
   "engines": {
     "node": "0.12.0"
-  },
-  "dependencies": {
-    "express": "^4.9.8"
   }
 }
