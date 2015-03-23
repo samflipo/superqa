@@ -13,8 +13,20 @@
     $( ".editRemove a" ).on("click", removeStudent);
     $( ".editAccount a" ).on("click", removeAccount);
     $( ".editPayment a" ).on("click", removePayment);
+    $( ".printReceipt").click(printReceipt);
   }
 
+
+  function printReceipt(){
+    var printContents = document.getElementById("receipt").innerHTML;
+    var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+  }
 
   function removePayment(){
     if ($(this).attr("class") === "removePayment"){

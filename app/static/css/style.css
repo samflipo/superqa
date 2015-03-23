@@ -16,11 +16,24 @@ a {
 .notice {
   color: red;
 }
-
+.printReceipt {
+  height: 30px;
+  font-weight: bold;
+  color: white;
+  background-color: #7AB07A;
+}
 a:hover {
   cursor: pointer;
   text-decoration: underline;
   color: #667782;
+}
+
+#receipt {
+  background-color: white;
+  margin: 30px auto;
+  width: 800px;
+  border-radius: 9px;
+  padding: 30px;
 }
 
 .amount {

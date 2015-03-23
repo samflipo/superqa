@@ -35,6 +35,7 @@ function load(app, fn){
   app.post('/accounts', d, accounts.create);
 
   app.get('/payment/:id', d, payments.send);
+  app.get('/payments/:id', d, payments.show);
   app.post('/payments/:id', d, payments.create);
   app.delete('/payments/:id/:studentId', d, payments.destroy);
 

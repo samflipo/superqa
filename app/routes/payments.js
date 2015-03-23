@@ -1,4 +1,6 @@
 var Payment = require('../models/payment.js');
+var Student = require('../models/student.js');
+var Account = require('../models/account.js');
 var moment = require('moment');
 
 exports.create = function(req, res){
@@ -17,11 +19,21 @@ exports.create = function(req, res){
   }
 };
 
+exports.show = function(req, res){
+  Payment.findById(req.params.id, function(payment){
+    Student.findById(payment.studentId, function(student){
+      Account.findById(student.accountId, function(account){
+        res.render("accounts/students/payments/show", {payment: payment, student: student, account: account, moment: moment});
+      });
+    });
+  });
+};
+
 exports.send = function(req, res){
   Payment.findById(req.params.id, function(payment){
     res.send({ data: payment });
   });
-}
+};
 
 exports.destroy = function(req, res){
   var studentId = req.params.studentId;

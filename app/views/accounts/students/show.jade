@@ -26,7 +26,7 @@ block content
             each payment in payments
               tr(data-paymentId=payment._id)
                 td: p=moment(payment.updatedAt).format("DD/MM/YYYY")
-                td: p="$" + payment.amount + ".00"
+                td: p="$" + payment.amount.toFixed(2)
                 td: p=payment.type
                 td: p.editPayment
                   a(href="/payments/" + payment._id ): <i class="fa fa-eye"></i>
@@ -41,7 +41,7 @@ block content
         p="Email : "+ student.email
         p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
         br
-        h2="Balance : $" + bal + ".00"
+        h2="Balance : $" + bal.toFixed(2)
         br
         
         button Print Recipt
