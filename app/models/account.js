@@ -15,31 +15,60 @@ function Account(opt){
 }
 
 Account.prototype.insert = function(fn){
-  accounts.insert(this, function(err, record){
-    fn(record);
+  var self = this;
+  accounts.findOne({ cohort: self.cohort }, function(err, record){
+    if (!record){
+      accounts.insert(self, function(err, record){
+        fn(record);
+      });
+    } else {
+      fn(new Error("Duplicate Cohort name"));
+    }
   });
 };
 
 Account.prototype.update = function(id, fn){
-  accounts.update({ _id: new ObjectID(id)}, this, function (err, count){
-    fn(count);
+  var self = this;
+
+  accounts.findOne({cohort : self.cohort }, function(err, count){
+    if (!count){
+      accounts.update({ _id: new ObjectID(id)}, self, function (err, count){
+        fn(count);
+      });
+    }else {
+      fn(new Error("Cohort name is taken"));
+    }
   });
 };
 
 Account.findAll = function(fn){
   accounts.find().sort({ created : -1 }).toArray(function(err, records){
-    fn(records);
+    if(records.length){
+      fn(records);
+    }else{
+      fn(new Error('No records found'));
+    }
   });
 };
 
 Account.findById = function(id, fn){
   accounts.findOne({_id: new ObjectID(id)}, function(err, record){
-    fn(record);
+    if(record){
+      fn(record);
+    }else{
+      fn(new Error('No cohort record was found'));
+    }
   });
 };
 
 Account.removeById = function(id, fn){
-  accounts.remove({_id: new ObjectID(id)}, function(err, count){
-    fn(count);
+  accounts.findOne({_id: new ObjectID(id)}, function(err, record){
+    if(record){
+      accounts.remove({_id: new ObjectID(id)}, function(err, count){
+        fn(count);
+      });
+    }else{
+      fn(new Error('Record was not found'));
+    }
   });
 };

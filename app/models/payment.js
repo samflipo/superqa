@@ -17,7 +17,11 @@ function Payment(opt){
 
 Payment.prototype.insert = function(fn){
   payments.insert(this, function(err, record){
-    fn(record);
+    if(err){
+      fn(err);
+    } else {
+      fn(record);
+    }
   });
 };
 
@@ -29,26 +33,42 @@ Payment.prototype.update = function(id, fn){
 
 Payment.findAll = function(fn){
   payments.find().sort({ created : -1 }).toArray(function(err, records){
-    fn(records);
+    if(records.length){
+      fn(records);
+    }else{
+      fn(new Error('No records were found'));
+    }
   });
 };
 
 Payment.findById = function(id, fn){
   payments.findOne({_id: new ObjectID(id)}, function(err, record){
-    fn(record);
+    if(record){
+      fn(record)
+    } else {
+      fn(new Error('Payment record was not found'))
+    }
   });
 };
 
 Payment.findByStudentId = function(id, fn){
   payments.find({studentId: id}).toArray(function(err, records){
-    var balance = checkBalance(records);
-    fn(records, balance);
+    if(records.length){
+      var balance = checkBalance(records);
+      fn(records, balance);
+    }else{
+      fn(new Error('Payment records were not found'));
+    }
   });
 };
 
 Payment.removeById = function(id, fn){
   payments.remove({_id: new ObjectID(id)}, function(err, count){
-    fn(count);
+    if(count){
+      fn(count);
+    }else{
+      fn(new Error('Record was not found'));
+    }
   });
 };
 

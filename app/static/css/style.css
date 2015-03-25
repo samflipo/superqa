@@ -16,6 +16,13 @@ a {
 .notice {
   color: red;
 }
+
+.receiptRfooter {
+  padding-top: 5px;
+  text-align: right;
+  font-size: 11px;
+}
+
 .printReceipt {
   height: 30px;
   font-weight: bold;
@@ -34,6 +41,12 @@ a:hover {
   width: 800px;
   border-radius: 9px;
   padding: 30px;
+}
+
+#receipt hr {
+  display: block; height: 1px;
+  border: 0; border-top: 1px solid #ccc;
+  margin: 1em 0; padding: 0; 
 }
 
 .amount {
