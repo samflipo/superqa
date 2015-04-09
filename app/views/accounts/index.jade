@@ -1,35 +1,39 @@
 extends ../layout
 
 block content
-  .container
-    h4: a.toggleAccount(href='#') <i class="fa fa-plus"></i> Account 
-    br
-    .newAccount
-      form(action='/accounts', method='post')
-        input(type="hidden" class="id" name="_id" value="")
-        input(type='text', class="cohort" name='cohort', placeholder=' Cohort name', autofocus=true, required)
-        br
-        input(type='date', class="startDate" name='startDate', required)
-        br
-        input(type='date', class="endDate" name='endDate', required)
-        br
-        button(class="addAccount" type='submit') Create Account
-    h2=title
-    if accounts  
-      table(class="accountList")
-        tr
-          th: h4 Cohort
-          th: h4 Start
-          th: h4 End
-          th: h4 Last Updated
-          th: h4 Update
-          each account in accounts
-            tr(data-accountId=account._id)
-              td: p: a(href="accounts/"+account._id)=account.cohort
-              td: p=moment(account.startDate).format("DD/MM/YYYY")
-              td: p=moment(account.endDate).format("DD/MM/YYYY")
-              td: p=moment(account.updatedAt).fromNow()
-              td: p.editAccount
-                a(href="/accounts/" + account._id ): <i class="fa fa-eye"></i>
-                a(href="#") |
-                a.removeAccount(href="#" data-id=account._id): <i class="fa fa-trash-o"></i>
+  if user.admin
+    .container
+      h4: a.toggleAccount(href='#') <i class="fa fa-plus"></i> Account 
+      br
+      .newAccount
+        form(action='/accounts', method='post')
+          input(type="hidden" class="id" name="_id" value="")
+          input(type='text', class="cohort" name='cohort', placeholder=' Cohort name', autofocus=true, required)
+          br
+          input(type='date', class="startDate" name='startDate', required)
+          br
+          input(type='date', class="endDate" name='endDate', required)
+          br
+          button(class="addAccount" type='submit') Create Account
+      h2=title
+      if accounts  
+        table(class="accountList")
+          tr
+            th: h4 Cohort
+            th: h4 Start
+            th: h4 End
+            th: h4 Last Updated
+            th: h4 Update
+            each account in accounts
+              tr(data-accountId=account._id)
+                td: p: a(href="accounts/"+account._id)=account.cohort
+                td: p=moment(account.startDate).format("DD/MM/YYYY")
+                td: p=moment(account.endDate).format("DD/MM/YYYY")
+                td: p=moment(account.updatedAt).fromNow()
+                td: p.editAccount
+                  a(href="/accounts/" + account._id ): <i class="fa fa-eye"></i>
+                  a(href="#") |
+                  a.removeAccount(href="#" data-id=account._id): <i class="fa fa-trash-o"></i>
+  else
+    .container
+      h4 You have no right to this page

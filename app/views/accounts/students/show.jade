@@ -1,47 +1,63 @@
 extends ../../layout
 
 block content
-  .container
-    if student
-      h4: a(class="togglePayment" href="#") <i class="fa fa-plus"></i> Payment
-      br
-      .paymentForm
-        form(name="payment" action="/payments/" + student._id method="post")
-          input(type="hidden" class="id" name="_id" value="")
-          label: h4 Amount
-          input(type="number" class="amount" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
-          label: h4 cash
-          input(type="checkbox" class="cash" name="type" value="cash" checked placeholder="cash") 
-          label: h4 check
-          input(type="checkbox" class="check" name="type" value="check" placeholder="check")
-          button(class="addPayment") Add 
-      h2=student.firstName + "'s account"
-      if payments
-        table(class="paymentList")
-          tr
-            th: h4 Date
-            th: h4 Amount
-            th: h4 Type
-            th: h4 Update
-            each payment in payments
-              tr(data-paymentId=payment._id)
-                td: p=moment(payment.updatedAt).format("DD/MM/YYYY")
-                td: p="$" + payment.amount.toFixed(2)
-                td: p=payment.type
-                td: p.editPayment
-                  a(href="/payments/" + payment._id ): <i class="fa fa-eye"></i>
-                  a(href="#") |
-                  a.removePayment(href="#" data-id=payment._id, data-studentId=payment.studentId): <i class="fa fa-trash-o"></i>
-        
+  if user.admin
+    .container
+      if student
+        h4: a(class="togglePayment" href="#") <i class="fa fa-plus"></i> Payment
         br
-        br
-        p="Student :" + student.firstName + student.lastName 
-        p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
-        p="Phone : "+ student.phone
-        p="Email : "+ student.email
-        p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
-        br
-        h2="Balance : $" + bal.toFixed(2)
-        br
-        
-        button Print Recipt
+        .paymentForm
+          .cashCheckForm
+            form(name="payment" action="/payments/" + student._id method="post")
+              input(type="hidden" class="id" name="_id" value="")
+              h4 Amount
+              input(type="number" class="amount" name="amount" min="0" max=bal step="50" value=bal placeholder="Amount")  
+              .cash
+                input(type="radio" class="cash" name="type" value="cash" checked) 
+                h4 cash
+              .check
+                input(type="radio" class="check" name="type" value="check")
+                h4 check
+              .card
+                input(type="radio" name="type" value="card")
+                h4 card
+              button(class="addPayment") Add 
+          .cardForm
+            form(action='/payments/stripe/' + student._id, method='POST')
+              script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key='pk_test_CDmehItS5Rkr1Yhc9mtpnJg4', data-amount='2000', data-name='Demo Site', data-description='2 widgets ($20.00)', data-image='superqa.png')
+
+
+              
+        h2=student.firstName + "'s account"
+        if payments
+          table(class="paymentList")
+            tr
+              th: h4 Date
+              th: h4 Amount
+              th: h4 Type
+              th: h4 Update
+              each payment in payments
+                tr(data-paymentId=payment._id)
+                  td: p=moment(payment.updatedAt).format("DD/MM/YYYY")
+                  td: p="$" + payment.amount.toFixed(2)
+                  td: p=payment.type
+                  td: p.editPayment
+                    a(href="/payments/" + payment._id ): <i class="fa fa-eye"></i>
+                    a(href="#") |
+                    a.removePayment(href="#" data-id=payment._id, data-studentId=payment.studentId): <i class="fa fa-trash-o"></i>
+          
+          br
+          br
+          p="Student :" + student.firstName + student.lastName 
+          p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
+          p="Phone : "+ student.phone
+          p="Email : "+ student.email
+          p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
+          br
+          h2="Balance : $" + bal.toFixed(2)
+          br
+          
+          button Print Recipt
+  else
+    .container
+      h4 You have no right to this page

@@ -1,6 +1,4 @@
 (function(){
-
-
   $(document).ready(initialize);
 
   function initialize(){
@@ -14,18 +12,17 @@
     $( ".editAccount a" ).on("click", removeAccount);
     $( ".editPayment a" ).on("click", removePayment);
     $( ".printReceipt").click(printReceipt);
+    $('.card').click(togglePayButton);
   }
 
+  function togglePayButton(){
+    $(".cardForm").toggle();
+  }
 
   function printReceipt(){
-    var printContents = document.getElementById("receipt").innerHTML;
-    var originalContents = document.body.innerHTML;
-
-     document.body.innerHTML = printContents;
-
-     window.print();
-
-     document.body.innerHTML = originalContents;
+    document.body.innerHTML = document.getElementById("receipt").innerHTML;
+    window.print();
+    document.body.innerHTML = document.body.innerHTML;
   }
 
   function removePayment(){
@@ -43,7 +40,6 @@
       }
     }
   }
-
 
   function removeAccount(){
     if ($(this).attr("class") === "removeAccount"){
@@ -110,7 +106,7 @@
     $(".amount").val(data.amount);
     $(".amount").attr("max", 2500);
     $(".endDate").val(data.endDate);
-    $(".addAccount button").text("Save");
+    $(".cashCheckForm button").text("Save");
   }
 
   function editAccountForm(data){
@@ -120,7 +116,7 @@
     $(".cohort").val(data.cohort);
     $(".startDate").val(data.startDate);
     $(".endDate").val(data.endDate);
-    $(".addAccount button").text("Save");
+    $(".newAccount button").text("Save");
   }
 
   function editStudentForm(data){
@@ -148,6 +144,5 @@
   function togglePaymentForm(){
     $(".paymentForm").toggle();
   }
-
 
 })();

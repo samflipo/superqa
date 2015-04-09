@@ -2,23 +2,27 @@ extends ../../../layout
 
 
 block content
-  .container
-    #receipt
-      h2 Receipt
-      br
-      h3 SuperQA Software Training Bootcamp
-      hr
-      .userInfo
-        p="Student :" + student.firstName + student.lastName 
-        p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
-        p="Phone : "+ student.phone
-        p="Email : "+ student.email
-        p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
-      br
-      h2= "Amount: $" + payment.amount.toFixed(2)
-      br
-      p= "Payment made:" + moment(payment.updatedAt).format("MM/DD/YYYY")
-      h3="Remaining Balance : $" + payment.balance.toFixed(2)
-      hr
-      p.receiptRfooter SuperQA Software Training Bootcamp | 427 Grand Avenue - Oakland, CA 94610
-    button.printReceipt Print Receipt
+  if user.admin
+    .container
+      #receipt
+        h2 Receipt
+        br
+        h3 SuperQA Software Training Bootcamp
+        hr
+        .userInfo
+          p="Student :" + student.firstName + student.lastName 
+          p: a(href="/accounts/"+student.accountId)="Batch: " + account.cohort
+          p="Phone : "+ student.phone
+          p="Email : "+ student.email
+          p="Address : " + student.street + " " + student.city + ", " + student.state.toUpperCase() + " " + student.zip
+        br
+        h2= "Amount: $" + payment.amount.toFixed(2)
+        br
+        p= "Payment made:" + moment(payment.updatedAt).format("MM/DD/YYYY")
+        h3="Remaining Balance : $" + payment.balance.toFixed(2)
+        hr
+        p.receiptRfooter SuperQA Software Training Bootcamp | 427 Grand Avenue - Oakland, CA 94610
+      button.printReceipt Print Receipt
+  else
+    .container
+      h3 You have no write to this page

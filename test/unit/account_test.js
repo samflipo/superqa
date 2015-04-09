@@ -1,8 +1,6 @@
 process.env.DBNAME = 'superqa-test';
 var expect = require('chai').expect;
 var User, Account, u1, initMongo;
-var fs = require('fs');
-var exec = require('child_process').exec;
 
 describe('Account', function(){
 
@@ -15,7 +13,7 @@ describe('Account', function(){
   beforeEach(function(done){
     initMongo = require('../../app/lib/init-mongo.js');
     u1 = new User({email:'sami@nomail.com', password:'1234', confirmPassword:'1234'});
-    u1.register(function(){
+    u1.register('1234', function(){
       done();
     });
   });

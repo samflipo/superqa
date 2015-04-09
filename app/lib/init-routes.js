@@ -19,6 +19,12 @@ function load(app, fn){
 
   app.get('/', d, home.index);
 
+  app.get('/finder', d, users.refresh);
+  app.post('/finder', d, users.reauth);
+
+  app.get('/forget', d, users.finder);
+  app.post('/forget', d, users.recreate);
+
   app.get('/register', d, users.fresh);
   app.post('/register', d, users.create);
 
@@ -36,6 +42,7 @@ function load(app, fn){
 
   app.get('/payment/:id', d, payments.send);
   app.get('/payments/:id', d, payments.show);
+  app.post('/payments/stripe/:id', d, payments.stripPay);
   app.post('/payments/:id', d, payments.create);
   app.delete('/payments/:id/:studentId', d, payments.destroy);
 

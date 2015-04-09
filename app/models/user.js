@@ -8,10 +8,9 @@ module.exports = User;
 function User(opt){
   this.email = opt.email;
   this.password = opt.password;
-  this.confirmPassword = opt.confirmPassword;
   this.lastLogin = new Date();
   this.created = new Date();
-  this.admin = true;
+  this.admin = false;
 }
 
 User.prototype.update = function(id, fn){
@@ -22,12 +21,33 @@ User.prototype.update = function(id, fn){
   });
 };
 
-User.prototype.register = function(fn){
+User.prototype.updatePassword = function(confirmPassword, id, fn){
+  var self = this;
+
+  if(self.password === confirmPassword){
+    hashPassword(self.password, function(hashedPwd){
+      self.password = hashedPwd;
+      users.update({ _id: id}, self, { upsert: true }, function (err, count){
+        if(count){
+          console.log("This is the count", count);
+          fn(count);
+        }else{
+          console.log("It didn't get there");
+          fn();
+        }
+      });
+    });
+  }else{
+    fn();
+  }
+};
+
+User.prototype.register = function(confirmPassword, fn){
   var self = this;
   users.findOne({ email: self.email }, function(err, user){
     if(user){
       fn();
-    } else if (self.password === self.confirmPassword){
+    } else if (self.password === confirmPassword){
       hashPassword(self.password, function(hashedPwd){
         self.password = hashedPwd;
         insert(self, function(record){
@@ -39,7 +59,7 @@ User.prototype.register = function(fn){
         });
       });
     } else {
-      fn(false);
+      fn(new Error("Password mismatch."));
     }
   });
 };
@@ -61,9 +81,9 @@ User.findByEmailandPassword = function(email, password, fn){
 };
 
 User.findByEmail = function(email, fn){
-  users.findOne({ email : email }, function(err, fUser){
-    if(fUser){
-      fn(fUser);
+  users.findOne({email : email }, function(err, record){
+    if(record){
+      fn(record);
     } else {
       fn(null);
     }

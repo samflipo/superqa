@@ -1,6 +1,7 @@
 var Payment = require('../models/payment.js');
 var Student = require('../models/student.js');
 var Account = require('../models/account.js');
+var stripe = require("stripe")("sk_test_N6aTItvtps3DUIgDckQxgLVe");
 var moment = require('moment');
 
 exports.create = function(req, res){
@@ -17,6 +18,23 @@ exports.create = function(req, res){
       res.redirect("/students/" + req.params.id);
     });
   }
+};
+
+exports.stripPay = function(req, res){
+  console.log('It is getting here =>', req.body);
+  var stripeToken = req.body.stripeToken;
+
+  var charge = stripe.charges.create({
+    amount: '2000', // amount in cents, again
+    currency: "usd",
+    source: stripeToken,
+    description: "payinguser@example.com"
+  }, function(err, charge) {
+    if (err && err.type === 'StripeCardError') {
+      res.send('The card has been declined');
+    }
+    res.send(charge);
+  });
 };
 
 exports.show = function(req, res){

@@ -57,7 +57,7 @@ Payment.findByStudentId = function(id, fn){
       var balance = checkBalance(records);
       fn(records, balance);
     }else{
-      fn(new Error('Payment records were not found'));
+      fn(new Error('Payment records were not found'), 2500);
     }
   });
 };

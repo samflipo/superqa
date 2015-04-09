@@ -1,6 +1,32 @@
 var User = require('../models/user.js');
 var moment = require('moment');
 
+exports.finder = function(req, res){
+  res.render('users/find', {title: 'Forget password'});
+};
+
+exports.refresh = function(req, res){
+  res.render('users/refresh', {title: 'Enter new password'});
+};
+
+exports.recreate = function(req, res){
+  User.findByEmail(req.body.email, function(user){
+    if(user){
+      // Tood: generate random code and hold it in session and email it to the found user
+      // to verify it's the actual user changing password.
+      // require the random token with niew password.
+      req.session.regenerate(function(){
+        req.session.passwordUserId = user._id.toString();
+        req.session.save(function(){
+          res.redirect('/finder');
+        });
+      });
+    } else {
+      res.render('users/find', {title: 'Forget password', notice: 'email was not found'});
+    }
+  });
+};
+
 exports.fresh = function(req, res){
   res.render('users/fresh', {title: 'Register User'});
 };
@@ -17,12 +43,40 @@ exports.show = function(req, res){
   });
 };
 
+exports.reauth = function(req, res){
+  req.body.userId = req.session.passwordUserId;
+
+  User.findById(req.session.passwordUserId, function(user){
+    if(user){
+      user.password = req.body.password;
+
+      var nUser = new User(user);
+      nUser.admin = user.admin;
+
+      nUser.updatePassword(req.body.confirmPassword, user._id, function(count){
+        if(count){
+          req.session.regenerate(function(){
+            req.session.userId = user._id.toString();
+            req.session.save(function(){
+              res.redirect('/accounts');
+            });
+          });
+        }else{
+          res.render('users/refresh', {title: 'Enter new password', notice: "Passwords don't match"});
+        }
+      })
+    }else{
+      res.render('users/refresh', {title: 'Enter new password', notice: "Something went wrong, password is not updated"});
+    }
+  });
+}
+
 exports.create = function(req, res){
   User.findByEmail(req.body.email, function(isUser){
     if(!isUser){
       var user = new User(req.body);
 
-      user.register(function(rUser){
+      user.register(req.body.confirmPassword, function(rUser){
         if(rUser._id){
           req.session.regenerate(function(){
             req.session.userId = rUser._id.toString();
