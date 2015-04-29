@@ -1,0 +1,24 @@
+extends ../layout
+
+block content 
+  if reports
+    .container
+      if reports 
+        each report in reports
+          if report
+            h4= report.cohort
+        table(class="studentList")
+          tr
+            th: h4 Name
+            th: h4 Email
+            th: h4 Phone
+            th: h4 Balance
+            each report in reports
+              tr
+                td: p=report.studentFullName
+                td: p=report.studentEmail
+                td: p=report.studentPhone
+                td: i: p: b="$ " + report.balance.toFixed(2)
+  else
+    .container
+      h4 You have no right to this page

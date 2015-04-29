@@ -1,0 +1,30 @@
+extends ../layout
+
+block content 
+  if user.admin
+    .container
+      if account 
+        h2=account.cohort + " report"
+        br
+        p="Start Date: " + moment(account.startDate).format("DD/MM/YYYY") 
+        p="End Date: " + moment(account.endDate).format("DD/MM/YYYY") 
+        p="Updated At : " + moment(account.updatedAt).fromNow()
+        form(name="report" action="report/"+account._id method="get")
+        br
+            
+      if reports  
+        table(class="studentList")
+          tr
+            th: h4 Name
+            th: h4 Email
+            th: h4 Phone
+            th: h4 Balance
+            each report in reports
+              tr
+                td: p=report.studentFullName
+                td: p=report.studentEmail
+                td: p=report.studentPhone
+                td: p=report.balance
+  else
+    .container
+      h4 You have no right to this page

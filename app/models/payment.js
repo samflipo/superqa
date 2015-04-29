@@ -53,12 +53,9 @@ Payment.findById = function(id, fn){
 
 Payment.findByStudentId = function(id, fn){
   payments.find({studentId: id}).toArray(function(err, records){
-    if(records.length){
-      var balance = checkBalance(records);
+    checkBalance(records, function(balance){
       fn(records, balance);
-    }else{
-      fn(new Error('Payment records were not found'), 2500);
-    }
+    });
   });
 };
 
@@ -72,12 +69,17 @@ Payment.removeById = function(id, fn){
   });
 };
 
-function checkBalance(obj){
-  var sum = _.map(obj, "amount");
-  var result = 0;
-  for (var i = 0; i < sum.length; i++){
-    result = result + sum[i];
+function checkBalance(obj, fn){
+  if (obj){
+    var sum = _.map(obj, "amount");
+    var result = 0;
+    for (var i = 0; i < sum.length; i++){
+      result = result + sum[i];
+    }
+  }else{
+    result = 0;
   }
+
   result = 2500 - result;
-  return result;
+  fn(result);
 }

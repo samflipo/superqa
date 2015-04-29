@@ -16,6 +16,7 @@ function load(app, fn){
   var accounts = require('../routes/accounts');
   var students = require('../routes/students');
   var payments = require('../routes/payments');
+  var reports = require('../routes/reports');
 
   app.get('/', d, home.index);
 
@@ -33,6 +34,9 @@ function load(app, fn){
 
   app.get('/logout', d, users.logout);
   app.get('/users/show', d, users.show);
+
+  app.get('/reports', d, reports.index);
+  app.post('/reports/:id', d, reports.generate);
 
   app.get('/account/:id', d, accounts.send);
   app.get('/accounts', d, accounts.index);

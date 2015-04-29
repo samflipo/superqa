@@ -101,7 +101,6 @@
 
   function editPaymentForm(data){
     data = data.data;
-    console.log(data);
     $(".id").val(data._id);
     $(".amount").val(data.amount);
     $(".amount").attr("max", 2500);

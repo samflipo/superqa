@@ -1,5 +1,7 @@
 var Account = require('../models/account.js');
 var Student = require('../models/student.js');
+var Payment = require('../models/payment.js');
+var Report = require('../models/report.js');
 var moment = require('moment');
 
 exports.index = function(req, res){

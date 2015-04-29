@@ -153,9 +153,10 @@ describe('Student', function(){
       });
     });
 
-    it('should find all payments by studentId', function(done){
-      Payment.findByStudentId(s1._id.toString(), function(err){
-        expect(err.message).to.equal('Payment records were not found');
+    it('should not find all payments by studentId', function(done){
+      Payment.findByStudentId(s1._id.toString(), function(payments, balance){
+        expect(payments).to.have.length(0);
+        expect(balance).to.equal(2500);
         done();
       });
     });

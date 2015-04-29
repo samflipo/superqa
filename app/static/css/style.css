@@ -5,11 +5,15 @@ html, body, * {
   transition: border-color .2s ease, background-color .2s ease, opacity .2s ease, color .2s ease, -webkit-transform .2s ease;
   font-family: Helvetica;
 }
-
+p a, h4 a {
+  color: #138A13;
+}
 a {
   cursor: pointer;
   text-decoration: none;
+  color: white;
 }
+
 .editRemove a, .editAccount a, .editPayment a{
   margin-right: 5px;
 }

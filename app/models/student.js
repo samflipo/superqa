@@ -17,6 +17,7 @@ function Student(opt){
   this.state = opt.state;
   this.zip = opt.zip;
   this.updatedAt = moment().format();
+  this.balance = opt.balance || 0;
 }
 
 Student.prototype.insert = function(fn){
@@ -34,7 +35,7 @@ Student.prototype.insert = function(fn){
 };
 
 Student.prototype.update = function(id, fn){
-  students.update({ _id: new ObjectID(id) }, this, { upsert: true }, function (err, count){
+  students.update({ _id: new ObjectID(id) }, this, function (err, count){
     if (count){
       fn(count);
     } else {
