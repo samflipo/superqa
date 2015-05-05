@@ -2,7 +2,6 @@ html, body, * {
   margin: 0;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
-  /*transition: border-color .2s ease, background-color .2s ease, opacity .2s ease, color .2s ease, -webkit-transform .2s ease;*/
   font-family: "Helvetica";
   font-size: inherit;
   transition: opacity 0.2s ease, padding 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
@@ -15,9 +14,32 @@ a {
   text-decoration: none;
   color: white;
 }
+.circle1 p a, .circle2 p a {
+  font-weight: bold;
+  color: white;
+}
+.circle1 p {
+  font-weight: bold;
+  color: white;
+  background-color: #FF9966;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
 
-table tbody tr:nth-child(1) {
-  background-color: floralwhite;
+.circle2 p{
+  font-weight: bold;
+  color: white;
+  background-color: #00CC33;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
+  background-color: rgb(237, 237, 237);
 }
 
 .editRemove a, .editAccount a, .editPayment a{
