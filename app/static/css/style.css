@@ -46,6 +46,16 @@ table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
   margin-right: 5px;
 }
 
+.menuContainer {
+  display: flex;
+  justify-content: center;
+  padding: 15px;
+}
+
+.menuContainer a {
+  margin: 0 30px;
+}
+
 .generate {
   font-size: .9rem;
   width: 100%;
