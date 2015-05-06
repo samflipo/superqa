@@ -36,13 +36,15 @@ block content
         table(class="studentList")
           tr
             th: h4 Name
-            th: h4 Email
+            th: h4 Detail
             th: h4 Phone
             th: h4 Update
             each student in students
               tr(data-studentId=student._id)
-                td: p=student.firstName + " " + student.lastName
-                td: p=student.email
+                -var num = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
+                td(class="circle" + num): p: a(href="/students/"+student._id)=student.firstName[0] + student.lastName[0]
+                td: p.name=student.firstName + " " + student.lastName
+                      p=student.email
                 td: p=student.phone
                 td: p.editRemove
                   a(href="/students/" + student._id ): <i class="fa fa-eye"></i>

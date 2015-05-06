@@ -9,34 +9,6 @@ html, body, * {
 p a, h4 a {
   color: #0088cc;
 }
-a {
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-}
-.circle1 p a, .circle2 p a {
-  font-weight: bold;
-  color: white;
-}
-.circle1 p {
-  font-weight: bold;
-  color: white;
-  background-color: #FF9966;
-  padding: 6px 10px 10px 6px;
-  border-radius: 100px;
-  width: 30px;
-  height: 30px;
-}
-
-.circle2 p{
-  font-weight: bold;
-  color: white;
-  background-color: #00CC33;
-  padding: 6px 10px 10px 6px;
-  border-radius: 100px;
-  width: 30px;
-  height: 30px;
-}
 
 table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
   background-color: rgb(237, 237, 237);
@@ -158,6 +130,12 @@ p {
   padding: 0px 70px;
 }
 
+.name {
+  padding: 8px 0px;
+  color: #A9A3A3;
+  font-style: italic;
+}
+
 table {
   width: 100%;
   text-align: left;
@@ -165,7 +143,7 @@ table {
 }
 th, td {
   border-bottom: 1px solid #d6d6d6;
-  padding-top: 10px;
+  /*padding-top: 10px;*/
 }
 
 .addStudent, .newAccount, .paymentForm, .cardForm {

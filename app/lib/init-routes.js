@@ -46,7 +46,7 @@ function load(app, fn){
 
   app.get('/payment/:id', d, payments.send);
   app.get('/payments/:id', d, payments.show);
-  app.post('/payments/stripe/:id', d, payments.stripPay);
+  // app.post('/payments/stripe/:id', d, payments.stripPay);
   app.post('/payments/:id', d, payments.create);
   app.delete('/payments/:id/:studentId', d, payments.destroy);
 

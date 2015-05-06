@@ -1,0 +1,205 @@
+.circle5 p a, .circle6 p a, .circle7 p a, .circle8 p a,
+.circle9 p a, .circle10 p a, .circle11 p a, .circle12 p a,
+.circle13 p a, .circle14 p a, .circle15 p a, .circle16 p a,
+.circle17 p a, .circle18 p a, .circle19 p a, .circle20 p a {
+  font-weight: bold;
+  color: white;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: white;
+}
+
+.circle0 p {
+  font-weight: bold;
+  color: white;
+  background-color: #C1A578;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle1 p {
+  font-weight: bold;
+  color: white;
+  background-color: #FF9966;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle2 p{
+  font-weight: bold;
+  color: white;
+  background-color: #00CC33;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle3 p {
+  font-weight: bold;
+  background-color: #DAB94A;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle4 p {
+  font-weight: bold;
+  background-color: #D8D541;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle5 p {
+  font-weight: bold;
+  background-color: #CE533E;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle6 p {
+  font-weight: bold;
+  background-color: #6A41D8;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle7 p {
+  font-weight: bold;
+  background-color: #41D3D8;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle8 p {
+  font-weight: bold;
+  background-color: #41D888;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle9 p {
+  font-weight: bold;
+  background-color: #70B80B;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle10 p {
+  font-weight: bold;
+  background-color: #FF190B;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle11 p {
+  font-weight: bold;
+  background-color: #C144A7;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle12 p {
+  font-weight: bold;
+  background-color: #FF78A1;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle13 p {
+  font-weight: bold;
+  background-color: #3AC978;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle14 p {
+  font-weight: bold;
+  background-color: #F92252;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle15 p {
+  font-weight: bold;
+  background-color: #D89BF9;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle16 p {
+  font-weight: bold;
+  background-color: #90D803;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle17 p {
+  font-weight: bold;
+  background-color: #44C1A2;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle18 p {
+  font-weight: bold;
+  background-color: #CE44B0;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle19 p {
+  font-weight: bold;
+  background-color: #96C144;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
+
+.circle20 p {
+  font-weight: bold;
+  background-color: #A3D87C;
+  padding: 6px 10px 10px 6px;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+}
