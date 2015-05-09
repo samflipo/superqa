@@ -4,15 +4,15 @@ block content
   .container
     .loginForm
       p.notice=notice
-      h3=title
+      h1.login-title<i class="fa fa-key"></i> 
+      h1.login-title=title 
       br
       form(action='/login', method='post')
-        <i class="fa fa-envelope-o"></i> 
-        input(type='text', name='email', placeholder='Enter email', autofocus=true, required)
-        <i class="fa fa-key"></i>
-        input(type='password', name='password', placeholder='Enter password', required)
+        input(class='login-field' type='text', name='email', placeholder='Enter email', autofocus=true, required)
+        input(class='login-field' type='password', name='password', placeholder='Enter password', required)
         br
-        button(type='submit') Login
+        input(class='button' type='submit' value='Login') 
+        
         br
         br
         

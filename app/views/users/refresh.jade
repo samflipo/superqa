@@ -4,15 +4,12 @@ block content
   .container
     .registrationForm
       p.notice=notice
-      h3=title
+      h1.login-title=title
       br
       form(action='/finder', method='post')
-        <i class="fa fa-key"></i>
-        input(type='password', name='password', placeholder='Enter new password', required)
-        <i class="fa fa-key"></i>
-        input(type='password', name='confirmPassword', placeholder='Confirm new password', required)
-        br
-        button(type='submit') Reset
+        input(class="login-field" type='password', name='password', placeholder='Enter new password', required)
+        input(class='login-field' type='password', name='confirmPassword', placeholder='Confirm new password', required)
+        input(class="button" type='submit' value="Reset")
         br
         br
       

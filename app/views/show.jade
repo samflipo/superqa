@@ -1,52 +1,52 @@
 extends ../layout
 
 block content 
-  if user.admin
-    .container
-      h4: a(class="toggle" href="#") <i class="fa fa-plus"></i> Student
-      br
-      .addStudent
-        form(name="student" action=account._id + "/students" method="post")
-          input(type="hidden" class="id" name="_id" value="")
-          input(type="text" class= "firstName" name="firstName" placeholder="firstname" required) 
-          input(type="text" class="lastName" name="lastName" placeholder="lastname" required) 
-          input(type="tel" class="phone" name="phone" placeholder="Phone" required) 
-          input(type="email" class="email" name="email" placeholder="email" required) 
-          input(type="text" class="street" name="street" placeholder="street" required) 
-          input(class="half" class="city" type="text" name="city" placeholder="city" required)
-          input(class="half" class="state" type="text" name="state" placeholder="state" required)
-          input(class="half" class="zip" type="text" name="zip" placeholder="zipcode" required)
-          br
-          button Add 
-         
-      if account 
-        h2=account.cohort
+  .container
+    .main
+      if user.admin
+        h4: a(class="toggle" href="#") <i class="fa fa-plus"></i> Student
         br
-        p="Start Date: " + moment(account.startDate).format("DD/MM/YYYY") 
-        p="End Date: " + moment(account.endDate).format("DD/MM/YYYY") 
-        p="Updated At : " + moment(account.updatedAt).fromNow()
-        form(name="report" action="reports/"+account._id method="post")
-          button generate report
+        .addStudent
+          form(name="student" action=account._id + "/students" method="post")
+            input(type="hidden" class="id" name="_id" value="")
+            input(type="text" class= "firstName" name="firstName" placeholder="firstname" required) 
+            input(type="text" class="lastName" name="lastName" placeholder="lastname" required) 
+            input(type="tel" class="phone" name="phone" placeholder="Phone" required) 
+            input(type="email" class="email" name="email" placeholder="email" required) 
+            input(type="text" class="street" name="street" placeholder="street" required) 
+            input(class="half" class="city" type="text" name="city" placeholder="city" required)
+            input(class="half" class="state" type="text" name="state" placeholder="state" required)
+            input(class="half" class="zip" type="text" name="zip" placeholder="zipcode" required)
+            br
+            button Add 
+           
+        if account 
+          h2=account.cohort
           br
-          br
-            
-      if students
-        h2 List of students  
-        table(class="studentList")
-          tr
-            th: h4 Name
-            th: h4 Email
-            th: h4 Phone
-            th: h4 Update
-            each student in students
-              tr(data-studentId=student._id)
-                td: p=student.firstName + " " + student.lastName
-                td: p=student.email
-                td: p=student.phone
-                td: p.editRemove
-                  a(href="/students/" + student._id ): <i class="fa fa-eye"></i>
-                  a(href="#") |
-                  a.removeStudent(href="#" data-id=student._id): <i class="fa fa-trash-o"></i>
-  else
-    .container
+          p="Start Date: " + moment(account.startDate).format("DD/MM/YYYY") 
+          p="End Date: " + moment(account.endDate).format("DD/MM/YYYY") 
+          p="Updated At : " + moment(account.updatedAt).fromNow()
+          form(name="report" action="reports/"+account._id method="post")
+            button generate report
+            br
+            br
+              
+        if students
+          h2 List of students  
+          table(class="studentList")
+            tr
+              th: h4 Name
+              th: h4 Email
+              th: h4 Phone
+              th: h4 Update
+              each student in students
+                tr(data-studentId=student._id)
+                  td: p=student.firstName + " " + student.lastName
+                  td: p=student.email
+                  td: p Test
+                  td: p.editRemove
+                    a(href="/students/" + student._id ): <i class="fa fa-eye"></i>
+                    a(href="#") |
+                    a.removeStudent(href="#" data-id=student._id): <i class="fa fa-trash-o"></i>
+    else
       h4 You have no right to this page

@@ -10,6 +10,10 @@ p a, h4 a {
   color: #0088cc;
 }
 
+.grey {
+  color: #BABABA;
+  font-style: italic;
+}
 table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
   background-color: rgb(237, 237, 237);
 }
@@ -31,7 +35,6 @@ table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
 .generate {
   font-size: .9rem;
   width: 100%;
-  margin-bottom: 10px;
   background-color: #0088cc;
   color: #fff;
   border: none;
@@ -80,6 +83,9 @@ a:hover {
 
 .amount {
   width: 98%;
+}
+.studentList, .paymentList, .accountList {
+  width: 900px;
 }
 
 .studentList tbody tr:hover, .accountList tbody tr:hover, .paymentList tbody tr:hover {
@@ -130,6 +136,7 @@ p {
 }
 
 .container {
+  display: flex;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -144,20 +151,19 @@ p {
 }
 
 table {
-  width: 100%;
   text-align: left;
   margin-top: 20px;
 }
 th, td {
   border-bottom: 1px solid #d6d6d6;
-  /*padding-top: 10px;*/
+  padding-top: 10px;
 }
 
 .addStudent, .newAccount, .paymentForm, .cardForm {
   display: none;
 }
 
- body {
+body {
    margin: 0px;
  }
 
@@ -200,58 +206,81 @@ th, td {
   right: 0;
 }
 
-.loginForm {
+.loginForm, .registrationForm, .forgetForm, .registrationForm {
+  padding: 15px;
+  border: 1px solid #eaedef;
+  background-color: #fff;
+  border-radius: 3px;
   text-align: center;
-  margin: auto;
-  width: 300px;
-  height: 207px;
-  padding: 0 30px;
-  border: 1px solid #d6d6d6;
-  border-radius: 8px;
+  box-shadow: 0 0 15px #eee;
   position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  left: 50%;
+  top: 50%;
+  margin-left: -250px;
+  margin-top: -130px;
 }
- .registrationForm {
-  text-align: center;
-  margin: auto;
-  width: 300px;
-  height: 226px;
-  padding: 0 30px;
-  border: 1px solid #d6d6d6;
-  border-radius: 8px;
-  position: absolute;
-  top:0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.newAccount, .addStudent {
+  padding: 15px;
+  border: 1px solid #eaedef;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: 0 0 15px #eee;
 }
 
 .newAccount {
- text-align: center;
- margin:  auto auto 30px auto;
- width: 300px;
- height: 175px;
- padding: 20px 30px;
- border: 1px solid #d6d6d6;
- border-radius: 8px;
+  width: 300px;
+  height: 210px;
 }
 
 .addStudent {
- text-align: center;
- margin:  auto auto 30px auto;
- width: 300px;
- height: 320px;
- padding: 20px 30px;
- border: 1px solid #d6d6d6;
- border-radius: 8px;
+  width: 300px;
+  height: 350px;
+}
+
+.loginForm, .registrationForm {
+  width: 500px;
+  height: 300px;
+}
+.login-field.half {
+  width: 94px;
+}
+.newAccount .login-field, .addStudent .login-field {
+  height: 30px;
+  font-size: 13px;
+}
+.forgetForm {
+  width: 500px;
+  height: 250px;
+}
+
+.button:hover {
+  background-color: #339933;
+  border: 1px solid #339933;
+}
+.login-field {
+  -webkit-appearance: none;
+  display: block;
+  background-color: #fafafa;
+  border: 1px solid #eaedef;
+  border-radius: 3px;
+  padding: 10px 15px;
+  font-size: 16px;
+  margin: 10px 0;
+  max-width: none;
+  width: 100%;
+  outline: none;
+}
+
+.login-title {
+  color: #999;
+  font-weight: 300;
+  font-size: 1.4rem;
+  margin: 0 0 5px 15px;
 }
 
 .cashCheckForm {
+  font-size: 10px;
   text-align: center;
-  margin:  auto auto 30px auto;
   width: 300px;
   height: 220px;
   padding: 20px 30px;
@@ -261,7 +290,6 @@ th, td {
 
 .cardForm {
   text-align: center;
-  margin:  auto auto 30px auto;
   width: 300px;
   height: 100px;
   padding: 20px 30px;
@@ -270,6 +298,7 @@ th, td {
 }
 
 .cash, .check, .card {
+  margin-top: 10px;
   display: flex;
 }
 
@@ -278,43 +307,26 @@ th, td {
   margin-left: 10px;
 }
 
-.paymentForm input{
-  height: 25px;
-  margin-bottom: 10px;
-}
-
 .cvc, .month {
   width: 35%;
   margin-right: 10px;
+}
+
+.list {
+  display: flex;
 }
 
 .year {
   width: 50%;
 }
 
-.loginForm input, .forgetForm input, .registrationForm input, .addStudent input, .newAccount input {
-  width: 88%;
-  height: 25px;
-  margin-bottom: 10px;
-}
-
 .cashCheckForm form input:nth-child(2) {
   width: 98%;
-  height: 25px;
-  margin-bottom: 10px;
 }
 
 .cashCheckForm form input:nth-child(6) {
   padding-left: 30px;
   margin-bottom: 20px;
-}
-
-.addStudent .half {
-  width: 94px;
-}
-
-.addStudent .half:nth-child(2) {
-  margin: 0 20px;
 }
 
 .cardForm button {
@@ -324,8 +336,37 @@ th, td {
   background-color: #1E72E8;
   color: white
 }
+.button {
+  border: 1px solid #08c;
+  background-color: #08c;
+  color: #fff;
+  -webkit-appearance: none;
+  border-radius: 2px;
+  padding: 0.625rem 1.25rem;
+  font-weight: 500;
+  font-size: 1rem;
+  outline: none;
+  width: 100%;
+}
+.g-button {
+  text-align: center;
+  border: none;
+  background-color: rgb(36, 197, 197);
+  color: #fff;
+  -webkit-appearance: none;
+  border-radius: 2px;
+  font-weight: 500;
+  font-size: 1rem;
+  outline: none;
+  width: 170px;
+  height: 25px;
+}
 
-.loginForm button, .forgetForm button, .registrationForm button, .newAccount button, .addStudent button, .cashCheckForm button {
+.g-button:hover {
+  background-color: green;
+}
+
+.cashCheckForm button {
   width: 100%;
   height: 30px;
   margin: 0 auto;

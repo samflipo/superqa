@@ -4,13 +4,11 @@ block content
   .container
     .forgetForm
       p.notice=notice
-      h3=title
+      h1.login-title=title
       br
       form(class="forget" action='/forget', method='post')
-        <i class="fa fa-envelope-o"></i> 
-        input(type='text', name='email', placeholder='Enter email', autofocus=true, required)
-        br
-        button(type='submit') submit
+        input(class="login-field" type='text', name='email', placeholder='Enter email', autofocus=true, required)
+        input(class="button" type='submit' value="submit")
         br
         br
         

@@ -3,53 +3,52 @@ extends ../layout
 block content 
   if user.admin
     .container
-      h4: a(class="toggle" href="#") <i class="fa fa-plus"></i> Student
-      br
-      .modal-background
-        .addStudent
-          form(name="student" action=account._id + "/students" method="post")
-            input(type="hidden" class="id" name="_id" value="")
-            input(type="text" class= "firstName" name="firstName" placeholder="firstname" required) 
-            input(type="text" class="lastName" name="lastName" placeholder="lastname" required) 
-            input(type="tel" class="phone" name="phone" placeholder="Phone" required) 
-            input(type="email" class="email" name="email" placeholder="email" required) 
-            input(type="text" class="street" name="street" placeholder="street" required) 
-            input(class="half" class="city" type="text" name="city" placeholder="city" required)
-            input(class="half" class="state" type="text" name="state" placeholder="state" required)
-            input(class="half" class="zip" type="text" name="zip" placeholder="zipcode" required)
-            br
-            button Add 
-         
-      if account 
-        h2=account.cohort
+      .main
+        h4: a(class="toggle" href="#") <i class="fa fa-plus"></i> Student
         br
-        p="Start Date: " + moment(account.startDate).format("DD/MM/YYYY") 
-        p="End Date: " + moment(account.endDate).format("DD/MM/YYYY") 
-        p="Updated At : " + moment(account.updatedAt).fromNow()
-        form(name="report" action="/reports/"+account._id method="post")
-          button generate report
+        .modal-background
+          .addStudent
+            form(name="student" action=account._id + "/students" method="post")
+              input(class="login-field" type="hidden" class="id" name="_id" value="")
+              input(class="login-field" type="text" class= "firstName" name="firstName" placeholder="Firstname" required) 
+              input(class="login-field" type="text" class="lastName" name="lastName" placeholder="Lastname" required) 
+              input(class="login-field" type="tel" class="phone" name="phone" placeholder="Phone" required) 
+              input(class="login-field" type="email" class="email" name="email" placeholder="Email" required) 
+              input(class="login-field" type="text" class="street" name="street" placeholder="Street" required) 
+              .list
+                input(class="login-field" class="half" class="city" type="text" name="city" placeholder="City" required)
+                input(class="login-field" class="half" class="state" type="text" name="state" placeholder="State" required)
+                input(class="login-field" class="half" class="zip" type="text" name="zip" placeholder="Zipcode" required)
+              input(class='button' type='submit' value='Add') 
+           
+        if account 
+          h2=account.cohort
           br
-          br
-            
-      if students
-        h2 List of students  
-        table(class="studentList")
-          tr
-            th: h4 Name
-            th: h4 Detail
-            th: h4 Phone
-            th: h4 Update
-            each student in students
-              tr(data-studentId=student._id)
-                -var num = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
-                td(class="circle" + num): p: a(href="/students/"+student._id)=student.firstName[0] + student.lastName[0]
-                td: p.name=student.firstName + " " + student.lastName
-                      p=student.email
-                td: p=student.phone
-                td: p.editRemove
-                  a(href="/students/" + student._id ): <i class="fa fa-eye"></i>
-                  a(href="#") |
-                  a.removeStudent(href="#" data-id=student._id): <i class="fa fa-trash-o"></i>
+          p="Start Date: " + moment(account.startDate).format("DD/MM/YYYY") 
+          p="End Date: " + moment(account.endDate).format("DD/MM/YYYY") 
+          p="Updated At : " + moment(account.updatedAt).fromNow()
+          form(name="report" action="/reports/"+account._id method="post")
+            input(type="submit" class="g-button" value="generate report")
+            br
+            br
+              
+        if students
+          h2 List of students  
+          table(class="studentList")
+            tr
+              th: h4 Name
+              th: h4 Detail
+              th: h4 Update
+              each student in students
+                tr(data-studentId=student._id)
+                  -var num = Math.floor(Math.random() * (20 - 0 + 1)) + 0;
+                  td(class="circle" + num): p: a(href="/students/"+student._id)=student.firstName[0] + student.lastName[0]
+                  td: p=student.firstName + " " + student.lastName
+                        p.grey=student.email +" | "+ student.phone
+                  td: p.editRemove
+                    a(href="/students/" + student._id ): <i class="fa fa-eye"></i>
+                    a(href="#") |
+                    a.removeStudent(href="#" data-id=student._id): <i class="fa fa-trash-o"></i>
   else
     .container
       h4 You have no right to this page
