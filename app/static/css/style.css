@@ -115,11 +115,18 @@ h4 {
   font-size: 16px;
   color: #667782;
 }
+.orange {
+  color: orange;
+}
+
+.red {
+  color: red;
+}
 
 p {
   font-weight: 300;
   font-size: 14px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
 .container {
