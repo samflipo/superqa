@@ -17,8 +17,12 @@ function load(app, fn){
   var students = require('../routes/students');
   var payments = require('../routes/payments');
   var reports = require('../routes/reports');
+  var expenses = require('../routes/expenses');
 
   app.get('/', d, home.index);
+
+  app.get('/expenses/:id', d, expenses.show);
+  app.post('/expenses', d, expenses.create);
 
   app.get('/finder', d, users.refresh);
   app.post('/finder', d, users.reauth);

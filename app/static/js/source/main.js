@@ -5,6 +5,7 @@
     $( ".toggle" ).click(toggleStudentForm);
     $( ".toggleAccount").click(toggleAccountForm);
     $( ".togglePayment").click(togglePaymentForm);
+    $( ".toggleExpense").click(toggleExpenseForm);
     $( ".studentList tr" ).on("dblclick", editStudent);
     $( ".accountList tr" ).on("dblclick", editAccount);
     $( ".paymentList tr" ).on("dblclick", editPayment);
@@ -142,6 +143,10 @@
 
   function togglePaymentForm(){
     $(".paymentForm").toggle();
+  }
+
+  function toggleExpenseForm(){
+    $(".addExpense").toggle();
   }
 
 })();

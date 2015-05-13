@@ -84,7 +84,7 @@ a:hover {
 .amount {
   width: 98%;
 }
-.studentList, .paymentList, .accountList {
+.studentList, .paymentList, .accountList, .expenseList {
   width: 900px;
 }
 
@@ -159,7 +159,7 @@ th, td {
   padding-top: 10px;
 }
 
-.addStudent, .newAccount, .paymentForm, .cardForm {
+.addStudent, .newAccount, .paymentForm, .cardForm, .addExpense {
   display: none;
 }
 
@@ -219,7 +219,7 @@ body {
   margin-left: -250px;
   margin-top: -130px;
 }
-.newAccount, .addStudent {
+.newAccount, .addStudent, .addExpense {
   padding: 15px;
   border: 1px solid #eaedef;
   background-color: #fff;
