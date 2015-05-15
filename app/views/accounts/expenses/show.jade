@@ -9,10 +9,16 @@ block content
         .addExpense
           form(name="expense" action="/expenses" method="post")
             input(class="login-field" type="hidden" class="accountId" name="accountId" value=account._id)
-            input(class="login-field" type="text" name="description" placeholder="Description" required) 
-            input(class="login-field" type="number" name="amount" required) 
-            input(class="login-field" type="date" class="date" name="date" placeholder="date" required) 
-            textarea(class="login-field" type="textarea" class="note" name="note" placeholder="note" required) 
+            input(class="login-field" type="text" name="description" placeholder="Description ..." required)
+            .innerContainer
+              .amount
+                label Amount: 
+                input(class="login-field" type="number" name="amount" required) 
+              .date
+                label Date: 
+                input(class="login-field" type="date" class="date" name="date" placeholder="date" required) 
+            label Note: 
+            <textarea class="login-field note" name="note" placeholder="Enter note (Optional) ..."></textarea> 
             input(class='button' type='submit' value='Add') 
       h2= "Expenses for " + title     
       if expenses.length > 0 
@@ -27,11 +33,13 @@ block content
               tr(data-expenseId=expense._id)
                 td: p=expense.description
                 td: p=expense.amount
-                td: p=expense.date
+                td: p=moment(expense.date).format("DD/MM/YYYY")
                 td: p=expense.note
                 td: p.editRemove
                   a(href="/accounts/" + expense._id ): <i class="fa fa-eye"></i>
                   a(href="#") |
                   a.removeStudent(href="#" data-id=expense._id): <i class="fa fa-trash-o"></i>
       else
+        br
+        br
         h4 There are no expenses made

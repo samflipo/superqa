@@ -23,8 +23,13 @@ table tbody tr:nth-child(1), table tbody tr:nth-child(1):hover {
 }
 
 .menuContainer {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
   display: flex;
   justify-content: center;
+  -webkit-justify-content: center;
   padding: 15px;
 }
 
@@ -136,6 +141,10 @@ p {
 }
 
 .container {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
   display: flex;
   position: absolute;
   width: 100%;
@@ -163,6 +172,9 @@ th, td {
   display: none;
 }
 
+.addExpense label {
+  text-align: center;
+}
 body {
    margin: 0px;
  }
@@ -225,6 +237,28 @@ body {
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0 0 15px #eee;
+  margin: 20px 0;
+}
+
+.innerContainer {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;
+}
+
+.amount {
+  width: 40%;
+  margin-right: 16px;
+}
+
+.date {
+  width: 55%;
+}
+
+.date input {
+  height: 41px;
 }
 
 .newAccount {
@@ -235,6 +269,11 @@ body {
 .addStudent {
   width: 300px;
   height: 350px;
+}
+
+.addExpense {
+  width: 350px;
+  height: 320px;
 }
 
 .loginForm, .registrationForm {
@@ -299,6 +338,10 @@ body {
 
 .cash, .check, .card {
   margin-top: 10px;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
   display: flex;
 }
 
@@ -313,6 +356,10 @@ body {
 }
 
 .list {
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
   display: flex;
 }
 

@@ -8,7 +8,7 @@ var moment = require('moment');
 exports.show = function (req, res) {
   Account.findById(req.params.id, function (account) {
     Expense.findByAccountId(req.params.id, function (expenses) {
-      res.render("accounts/expenses/show", {title: account.cohort, account: account, expenses: expenses});
+      res.render("accounts/expenses/show", {title: account.cohort, moment: moment, account: account, expenses: expenses});
     });
   });
 };
