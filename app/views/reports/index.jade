@@ -10,9 +10,9 @@ block content
     if reports
       if reports 
         .main
+          h2="Report for " + account.cohort
           each report in reports
             if report
-              h4= report.cohort
           table(class="studentList")
             tr
               th: h4 Name
