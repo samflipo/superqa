@@ -1,5 +1,10 @@
 extends ../../layout
 
+block menu
+  li: a(href='/accounts') Accounts
+  li.selectedMenu: a(href='/students') Students
+  
+
 block content
   .container
     if user.admin

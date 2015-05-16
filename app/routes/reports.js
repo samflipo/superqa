@@ -6,7 +6,11 @@ var moment = require('moment');
 
 exports.index = function(req, res){
   Report.findAll(function(reports){
-    res.render("reports/index", {title: 'Account reports', moment: moment, reports: reports});
+    console.log("Before test", reports[0]);
+    Account.findById(reports[0].accountId, function (account) {
+      console.log("test", account);
+      res.render("reports/index", {title: 'Account reports', account: account, moment: moment, reports: reports});
+    });
   });
 };
 
@@ -40,13 +44,13 @@ function balancer (student, account, fn) {
 
 function createReport(account, student, balance, fn){
   var obj = {
-    account: account,
+    accountId: account._id,
     studentFullName: student.firstName + " " + student.lastName,
     studentEmail: student.email,
     studentPhone: student.phone,
     balance: balance
   };
-  
+
   var report = new Report(obj);
   report.insert(function(report){
     fn(report);

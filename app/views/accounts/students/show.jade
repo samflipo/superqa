@@ -1,5 +1,10 @@
 extends ../../layout
 
+block menu
+  li: a(href='/accounts') Accounts
+  li: a(href='/students') Students
+  li.selectedMenu.inner: a(href="#")=student.firstName
+
 block content
   .container
     if user.admin
@@ -26,7 +31,7 @@ block content
                 input(class="addPayment button" type="submit" valur="Add") 
             .cardForm
               form(action='/payments/stripe/' + student._id, method='POST')
-                script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key='pk_test_CDmehItS5Rkr1Yhc9mtpnJg4', data-amount='2000', data-name='Demo Site', data-description='2 widgets ($20.00)', data-image='superqa.png')
+                script.stripe-button(src='https://checkout.stripe.com/checkout.js', data-key='pk_test_CDmehItS5Rkr1Yhc9mtpnJg4', data-amount='2000', data-name='Demo Site', data-description='2 widgets ($20.00)')
 
 
                 

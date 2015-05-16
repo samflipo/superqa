@@ -10,13 +10,16 @@ html
     script(src='/js/source/main.js')
     
   body
+    if user
+      .sideBar
+        .sideBarMenu
+          ul.menu
+            block menu
     .headerMenu
       .menuContainer
         if user
           a(href='/') 
             b: i SuperQA
-          a(href='/accounts') Accounts
-          a(href='/students') Students
           a(class='recruter' href='/logout')<i class="fa fa-sign-out"></i>
         else
           a(href='/login') Login

@@ -2,6 +2,7 @@
   $(document).ready(initialize);
 
   function initialize(){
+    $(".menu li").on("click", select);
     $( ".toggle" ).click(toggleStudentForm);
     $( ".toggleAccount").click(toggleAccountForm);
     $( ".togglePayment").click(togglePaymentForm);
@@ -18,6 +19,10 @@
 
   function togglePayButton(){
     $(".cardForm").toggle();
+  }
+
+  function select () {
+    console.log($(this));
   }
 
   function printReceipt(){

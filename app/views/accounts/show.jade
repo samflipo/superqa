@@ -1,5 +1,10 @@
 extends ../layout
 
+block menu
+  li: a(href='/accounts') Accounts
+  li.selectedMenu.inner: a(href='/accounts/' + account._id)=account.cohort
+  li: a(href='/students') Students
+  
 block content 
   if user.admin
     .container

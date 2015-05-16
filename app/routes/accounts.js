@@ -13,7 +13,7 @@ exports.index = function(req, res){
 exports.show = function(req, res){
   Account.findById(req.params.id, function(account){
     Student.findByAccountId(account._id.toString(), function(students){
-      res.render('accounts/show', {title: 'Account profile', students: students, account: account, moment:moment});
+      res.render('accounts/show', {title: 'Account profile', class: "active", students: students, account: account, moment:moment});
     });
   });
 };
