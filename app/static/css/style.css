@@ -336,13 +336,13 @@ body {
 .square {
   margin-right: 15px;
   padding: 10px 15px;
-  background-color: whitesmoke;
+  background-color: rgb(237, 229, 247);
   border-right: 1px solid #e5e5e5;
 }
 .searchBar {
   width: 100%;
   height: 1%;
-  background-color: whitesmoke;
+  background-color: rgb(237, 229, 247);
   overflow:hidden;
 }
 
@@ -394,7 +394,7 @@ body {
 }
 
 .cohortMenu li:hover {
-  background-color: whitesmoke;;
+  background-color: #ececec;
 }
 
 .menu a, .cohortMenu a {
