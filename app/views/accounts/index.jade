@@ -35,7 +35,8 @@ block content
         .searchBar
           .searchBarContainer
             .search
-            .newAccountButton.toggleAccount New account
+              input(type="text" placeholder="Filter by account")
+            .newAccountButton.toggleAccount: a(href="#") New account
           .newAccount
             form(action='/accounts', method='post')
               input(class="login-field" type="hidden" class="id" name="_id" value="")

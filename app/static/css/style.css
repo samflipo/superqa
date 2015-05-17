@@ -163,8 +163,8 @@ p {
   position: absolute;
   width: 100%;
   height: 100%;
-  margin-top: 60px;
-  padding: 0px 220px;
+  margin-top: 122px;
+  padding: 0px 40px 0px 210px;
 }
 
 .name {
@@ -254,6 +254,10 @@ body {
   margin: 20px 0;
 }
 
+.newAccount {
+  margin: 20px auto;
+}
+
 .innerContainer, .searchBarContainer {
   display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
   display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
@@ -264,9 +268,7 @@ body {
 
 .searchBarContainer {
   height: 75%;
-  margin: 10px 10px;
-  border: 1px solid #e5e5e5;
-  background-color: #fafafa;
+  margin: 10px 35px;
   border-radius: 4px;
 }
 
@@ -324,7 +326,8 @@ body {
 }
 
 .fromDate {
-  padding-left: 30px;
+  float: right;
+  padding-right: 21px;
   font-style: italic;
   font-size: 13px;
   color: #999;
@@ -349,10 +352,13 @@ body {
   border: 1px solid #019875;
   background-color: #019875;
   border-radius: 4px;
-  padding: 4px 9px;
-  color: white;
+  padding: 5px 9px;
   font-size: 14px;
   font-weight: bold;
+}
+
+.newAccountButton a {
+  color: white!important;
 }
 
 .newAccountButton:hover {
@@ -363,6 +369,17 @@ body {
   width: 60%;
   border: 1px solid #e5e5e5;
   border-radius: 4px;
+  background-color: #fafafa;
+  margin-right: 10px;
+}
+
+.search input {
+  padding: 6px 0px 6px 10px;
+  border: none;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  font-size: 13px;
 }
 
 .cohortMenu {
@@ -388,6 +405,7 @@ body {
 .rightSideBar {
   width: 30%;
   /*background-color: whitesmoke;*/
+  overflow: hidden;
   border-right: 1px solid #e5e5e5;
   border-left: 1px solid #e5e5e5;
   border-top: 1px solid #e5e5e5;
