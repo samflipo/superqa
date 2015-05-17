@@ -8,15 +8,6 @@ block content
   .container
     if user.admin
       .main
-        h4: a.toggleAccount(href='#') <i class="fa fa-plus"></i> Account 
-        br
-        .newAccount
-          form(action='/accounts', method='post')
-            input(class="login-field" type="hidden" class="id" name="_id" value="")
-            input(class="login-field" type='text', class="cohort" name='cohort', placeholder=' Cohort name', autofocus=true, required)
-            input(class="login-field" type='date', class="startDate" name='startDate', required)
-            input(class="login-field" type='date', class="endDate" name='endDate', required)
-            input(class="addAccount button" type='submit' value="Create Account")
         h2=title
         if accounts  
           table(class="accountList")
@@ -40,5 +31,25 @@ block content
                     a(href="/accounts/" + account._id ): <i class="fa fa-eye"></i>
                     a(href="#") |
                     a.removeAccount(href="#" data-id=account._id): <i class="fa fa-trash-o"></i>
+      .rightSideBar
+        .searchBar
+          .searchBarContainer
+            .search
+            .newAccountButton.toggleAccount New account
+          .newAccount
+            form(action='/accounts', method='post')
+              input(class="login-field" type="hidden" class="id" name="_id" value="")
+              input(class="login-field" type='text', class="cohort" name='cohort', placeholder=' Cohort name', autofocus=true, required)
+              input(class="login-field" type='date', class="startDate" name='startDate', required)
+              input(class="login-field" type='date', class="endDate" name='endDate', required)
+              input(class="addAccount button" type='submit' value="Create Account")
+        if accounts
+          ul.cohortMenu 
+            each account in accounts 
+              li(data-accountId=account._id)
+                a(href="accounts/"+account._id)
+                  span(class="square")=account.cohort.split(" ")[0][0].toUpperCase() 
+                  span=account.cohort
+                  span.fromDate=moment(account.updatedAt).fromNow()
     else
       h4 You have no right to this page
