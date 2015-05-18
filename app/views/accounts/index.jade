@@ -7,30 +7,15 @@ block menu
 block content
   .container
     if user.admin
-      .main
-        h2=title
-        if accounts  
-          table(class="accountList")
-            tr
-              th: h4 Cohort
-              th: h4 Start
-              th: h4 End
-              th: h4 Last Updated
-              th: h4 Expense
-              th: h4 Update
-              each account in accounts
-                tr(data-accountId=account._id)
-                  - var cl = account.cohort.split(" ")[1] ? account.cohort.split(" ")[1][0] : 0
-                  - var suf = account.cohort.split(" ")[1] ? account.cohort.split(" ")[1][0] : account.cohort.split(" ")[0][1].toUpperCase()
-                  td(class="circle" + cl): p: a(href="accounts/"+account._id)=account.cohort.split(" ")[0][0].toUpperCase() + suf
-                  td: p=moment(account.startDate).format("DD/MM/YYYY")
-                  td: p=moment(account.endDate).format("DD/MM/YYYY")
-                  td: p=moment(account.updatedAt).fromNow()
-                  td: p: a(href="expenses/" + account._id) Expense
-                  td: p.editAccount
-                    a(href="/accounts/" + account._id ): <i class="fa fa-eye"></i>
-                    a(href="#") |
-                    a.removeAccount(href="#" data-id=account._id): <i class="fa fa-trash-o"></i>
+      .main.accounts
+        ul.top
+          each feed in feeds
+            li
+              .mainLine
+                a(href="#")=feed.user
+                span="  " + feed.message
+                span.fromDate=moment(feed.updatedAt).fromNow()
+              .secondLine=feed.detail
       .rightSideBar
         .searchBar
           .searchBarContainer

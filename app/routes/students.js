@@ -1,6 +1,7 @@
 var Student = require('../models/student.js');
 var Payment = require('../models/payment.js');
 var Account = require('../models/account.js');
+var Feed = require('../models/feed.js');
 var moment = require('moment');
 
 exports.index = function(req, res){
@@ -54,8 +55,20 @@ exports.create = function(req, res){
   var student = new Student(req.body);
 
   if(!req.body._id){
-    student.insert(function(count){
-      res.redirect("/accounts/"+req.params.id);
+    student.insert(function(student){
+      Account.findById(student[0].accountId, function (account) {
+        var opt = {
+          user: student[0].firstName + " " + student[0].lastName,
+          message: "got added to an account",
+          detail: "account " + account.cohort
+        }
+
+        var feed = new Feed(opt);
+
+        feed.insert(function (feed) {
+          res.redirect("/accounts/"+req.params.id);
+        });
+      });
     });
   }else{
     student.update(req.body._id, function(count){

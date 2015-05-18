@@ -2,11 +2,14 @@ var Account = require('../models/account.js');
 var Student = require('../models/student.js');
 var Payment = require('../models/payment.js');
 var Report = require('../models/report.js');
+var Feed = require('../models/feed.js');
 var moment = require('moment');
 
 exports.index = function(req, res){
   Account.findAll(function(accounts){
-    res.render("accounts/index", {title: 'All Accounts', moment: moment, accounts: accounts});
+    Feed.findAll(function(feeds) {
+      res.render("accounts/index", {title: 'All Accounts', moment: moment, accounts: accounts, feeds: feeds});
+    });
   });
 };
 
@@ -32,8 +35,18 @@ exports.create = function(req, res){
   var account = new Account(req.body);
 
   if(!req.body._id){
-    account.insert(function(count){
-      res.redirect("/accounts");
+    account.insert(function(account){
+      var opt = {
+        user: account[0].cohort,
+        message: "account is created",
+        detail: "starts on " + moment(account[0].startDate).format("MMMM Do, YYYY")
+      }
+
+      var feed = new Feed(opt);
+
+      feed.insert(function(feed){
+        res.redirect("/accounts");
+      });
     });
   } else {
     account.update(req.body._id, function(count){

@@ -382,6 +382,36 @@ body {
   font-size: 13px;
 }
 
+.mainLine {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.secondLine {
+  color: #999;
+  padding-right: 21px;
+  font-style: italic;
+  font-size: 13px;
+}
+
+.accounts {
+  margin-top: 57px;
+}
+
+.accounts a {
+  color: #0088cc;
+}
+.accounts li {
+  border-bottom: 1px solid #e5e5e5;
+  height: 63px;
+  padding: 13px;
+  list-style: none;
+}
+
+.top {
+  border-top: 1px solid #e5e5e5;
+}
+
 .cohortMenu {
   padding: 0px;
 }
