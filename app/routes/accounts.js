@@ -39,7 +39,7 @@ exports.create = function(req, res){
       var opt = {
         user: account[0].cohort,
         message: "account is created",
-        detail: "starts on " + moment(account[0].startDate).format("MMMM Do YYYY")
+        detail: "from " + moment(account[0].startDate).format("MMMM Do YYYY") + " to " + moment(account[0].endDate).format("MMMM Do YYYY")
       }
 
       var feed = new Feed(opt);
@@ -49,8 +49,24 @@ exports.create = function(req, res){
       });
     });
   } else {
-    account.update(req.body._id, function(count){
-      res.redirect("/accounts");
+    Account.findById(req.body._id, function (oldAccount) {
+      account.update(req.body._id, function(count){
+        if (count) {
+          Account.findById(req.body._id, function (account) {
+            var opt = {
+              user: oldAccount.cohort,
+              message: "account is updated",
+              detail: "to " + account.cohort + ", from " + moment(account.startDate).format("MMMM Do YYYY") + " to " + moment(account.endDate).format("MMMM Do YYYY")
+            }
+
+            var feed = new Feed(opt);
+
+            feed.insert(function(feed){
+              res.redirect("/accounts");
+            });
+          })
+        }
+      });
     });
   }
 };

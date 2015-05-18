@@ -60,7 +60,7 @@ exports.create = function(req, res){
         var opt = {
           user: student[0].firstName + " " + student[0].lastName,
           message: "got added to an account",
-          detail: "account " + account.cohort
+          detail: "with email " +student[0].email + " is added to account " + account.cohort
         }
 
         var feed = new Feed(opt);
@@ -71,8 +71,26 @@ exports.create = function(req, res){
       });
     });
   }else{
-    student.update(req.body._id, function(count){
-      res.redirect("/accounts/"+req.params.id);
+    Student.findById(req.body._id, function (oldStudent) {
+      student.update(req.body._id, function(count){
+        if (count) {
+          Student.findById(req.body._id, function (student) {
+            Account.findById(student.accountId, function (account) {
+              var opt = {
+                user: oldStudent.firstName + " " + oldStudent.lastName,
+                message: "student's detail got updated",
+                detail: "to " + student.firstName + " " + student.lastName + " with email " + student.email + " in account " + account.cohort
+              }
+
+              var feed = new Feed(opt);
+
+              feed.insert(function(feed){
+                res.redirect("/accounts/"+req.params.id);
+              });
+            });
+          })
+        }
+      });
     });
   }
 

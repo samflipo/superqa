@@ -30,12 +30,16 @@ Account.prototype.insert = function(fn){
 Account.prototype.update = function(id, fn){
   var self = this;
 
-  accounts.findOne({cohort : self.cohort }, function(err, count){
-    if (!count){
+  accounts.findOne({cohort : self.cohort }, function(err, foundAccount){
+    if (!foundAccount || (foundAccount._id.toString !== self._id)){
       accounts.update({ _id: new ObjectID(id)}, self, function (err, count){
-        fn(count);
+        if (err) {
+          fn(err);
+        } else {
+          fn(count);
+        }
       });
-    }else {
+    } else {
       fn(new Error("Cohort name is taken"));
     }
   });

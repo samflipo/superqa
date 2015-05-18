@@ -27,8 +27,26 @@ exports.create = function(req, res){
       });
     });
   } else {
-    payment.update(req.body._id, function(count){
-      res.redirect("/students/" + req.params.id);
+    Payment.findById(req.body._id, function (oldPayment) {
+      payment.update(req.body._id, function(count){
+        if (count) {
+          Payment.findById(req.body._id, function (payment) {
+            Student.findById(payment.studentId, function (student) {
+              var opt = {
+                user: student.firstName + " " + student.lastName,
+                message: "updated a payment",
+                detail: "from " + oldPayment.type + " payment of $ " + oldPayment.amount.toFixed(2) + " to " + payment.type + " payment of $ " + payment.amount.toFixed(2)
+              }
+
+              var feed = new Feed(opt);
+
+              feed.insert(function(feed){
+                res.redirect("/students/" + req.params.id);
+              });
+            });
+          })
+        }
+      });
     });
   }
 };
