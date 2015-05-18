@@ -39,6 +39,10 @@ block content
                 a(href="accounts/"+account._id)
                   span(class="square")=account.cohort.split(" ")[0][0].toUpperCase() 
                   span=account.cohort
-                  span.fromDate=moment(account.updatedAt).fromNow()
+                  span.fromDate.forAccount=moment(account.updatedAt).fromNow()
+                  .editAccount.hide(data-accountId=account._id)
+                    a(href="#"): <i class="fa fa-pencil-square-o"></i>
+                    a(href="#") |
+                    a.removeAccount(href="#" data-id=account._id): <i class="fa fa-trash-o"></i>
     else
       h4 You have no right to this page

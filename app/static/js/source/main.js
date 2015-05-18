@@ -8,15 +8,25 @@
     $( ".togglePayment").click(togglePaymentForm);
     $( ".toggleExpense").click(toggleExpenseForm);
     $( ".studentList tr" ).on("dblclick", editStudent);
-    $( ".accountList tr" ).on("dblclick", editAccount);
+    $( ".cohortMenu li div" ).on("dblclick", editAccount);
     $( ".paymentList tr" ).on("dblclick", editPayment);
     $( ".editRemove a" ).on("click", removeStudent);
     $( ".editAccount a" ).on("click", removeAccount);
     $( ".editPayment a" ).on("click", removePayment);
     $( ".printReceipt").click(printReceipt);
     $('.card').click(togglePayButton);
+    $(".cohortMenu li").hover(showEditDelet, hideEditDelet);
   }
 
+  function showEditDelet(){
+    $(this).find("span.fromDate").addClass("hide");
+    $(this).find("div.editAccount").removeClass("hide");
+  }
+
+  function hideEditDelet(){
+    $(this).find("div.editAccount").addClass("hide");
+    $(this).find("span.fromDate").removeClass("hide");
+  }
   function togglePayButton(){
     $(".cardForm").toggle();
   }
