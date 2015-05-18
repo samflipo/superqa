@@ -39,7 +39,7 @@ exports.create = function(req, res){
       var opt = {
         user: account[0].cohort,
         message: "account is created",
-        detail: "starts on " + moment(account[0].startDate).format("MMMM Do, YYYY")
+        detail: "starts on " + moment(account[0].startDate).format("MMMM Do YYYY")
       }
 
       var feed = new Feed(opt);
