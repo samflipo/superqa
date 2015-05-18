@@ -387,7 +387,7 @@ body {
   margin-bottom: 10px;
 }
 
-.secondLine {
+.secondLine, .feed {
   color: #999;
   padding-right: 21px;
   font-style: italic;
@@ -395,7 +395,7 @@ body {
 }
 
 .accounts {
-  margin-top: 57px;
+  margin-top: 6px;
 }
 
 .accounts a {
