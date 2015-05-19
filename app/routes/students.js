@@ -56,6 +56,7 @@ exports.create = function(req, res){
 
   if(!req.body._id){
     student.insert(function(student){
+      console.log("This is the student ==> ", student);
       Account.findById(student[0].accountId, function (account) {
         var opt = {
           user: student[0].firstName + " " + student[0].lastName,

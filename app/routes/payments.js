@@ -2,6 +2,7 @@ var Payment = require('../models/payment.js');
 var Student = require('../models/student.js');
 var Account = require('../models/account.js');
 var Feed = require('../models/feed.js');
+var email = require("../lib/email.js");
 // var stripe = require("stripe")("sk_test_N6aTItvtps3DUIgDckQxgLVe");
 var moment = require('moment');
 
@@ -13,17 +14,32 @@ exports.create = function(req, res){
   if(!req.body._id){
     payment.insert(function(payment){
       Student.findById(payment[0].studentId, function (student) {
+        console.log("This is the payment ", payment);
+        var data = {
+          to: student.email,
+          name: student.firstName,
+          amount: payment[0].amount.toFixed(2),
+          type: payment[0].type,
+          date: moment(payment[0].updatedAt).format("MMMM Do YYYY")
+        };
+
         var opt = {
           user: student.firstName + " " + student.lastName,
           message: "made a payment",
           detail: payment[0].type + " payment of $ " + payment[0].amount.toFixed(2)
         }
 
-        var feed = new Feed(opt);
+        email.sendInvoice(data, function (err, body) {
+          if (err) {
+            return err;
+          }
 
-        feed.insert(function (feed) {
-          res.redirect("/students/" + req.params.id);
-        });
+          var feed = new Feed(opt);
+
+          feed.insert(function (feed) {
+            res.redirect("/students/" + req.params.id);
+          });
+        })
       });
     });
   } else {

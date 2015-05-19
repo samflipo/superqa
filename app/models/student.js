@@ -1,6 +1,7 @@
 var initMongo = require('../lib/init-mongo.js');
 var students = initMongo.db.collection('students');
 var ObjectID = require('mongoskin').ObjectID;
+var email = require("../lib/email.js");
 var moment = require('moment');
 
 
@@ -26,7 +27,20 @@ Student.prototype.insert = function(fn){
   students.findOne({ email: self.email }, function(err, record){
     if (!record){
       students.insert(self, function(err, record){
-        fn(record);
+        if (record) {
+          var data = {
+            to: record[0].email,
+            name: record[0].firstName
+          };
+
+          email.sendWelcome(data, function (err, body) {
+            if (err) {
+              return fn(err);
+            }
+            console.log("This is the body of the email ", body);
+            fn(record);
+          });
+        }
       });
     }else{
       fn(new Error("Student is already in record"));
