@@ -11,6 +11,7 @@ exports.sendWelcome = function (data, fn) {
     from: superqa,
     to: data.to,
     name: data.name,
+    cohort: data.cohort,
     subject: "Welcome to SuperQA",
     template: "welcome"
   }, fn);
@@ -39,6 +40,7 @@ function send(data, fn){
   delete data.amount;
   delete data.type;
   delete data.date;
+  delete data.cohort;
 
   mailgun.messages().send(data, function (err, body) {
     fn(err, body);
