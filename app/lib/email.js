@@ -17,6 +17,33 @@ exports.sendWelcome = function (data, fn) {
   }, fn);
 };
 
+exports.sendStudentUpdated = function (data, fn) {
+  send({
+    from: superqa,
+    to: data.to,
+    name: data.name,
+    cohort: data.cohort,
+    subject: "Welcome to SuperQA",
+    template: "updateStudent"
+  }, fn);
+};
+
+exports.sendUpdateInvoice = function (data, fn) {
+  send({
+    from: superqa,
+    to: data.to,
+    name: data.name,
+    oldAmount: data.oldAmount,
+    newAmount: data.newAmount,
+    oldType: data.oldType,
+    newType: data.newType,
+    oldDate: data.oldDate,
+    newDate: data.newDate,
+    subject: "Payment Updated",
+    template: "update"
+  }, fn);
+};
+
 exports.sendInvoice = function (data, fn) {
   send({
     from: superqa,
@@ -41,6 +68,12 @@ function send(data, fn){
   delete data.type;
   delete data.date;
   delete data.cohort;
+  delete data.oldType;
+  delete data.newType;
+  delete data.oldAmount;
+  delete data.newAmount;
+  delete data.newDate;
+  delete data.newDate;
 
   mailgun.messages().send(data, function (err, body) {
     fn(err, body);

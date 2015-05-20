@@ -14,7 +14,6 @@ exports.create = function(req, res){
   if(!req.body._id){
     payment.insert(function(payment){
       Student.findById(payment[0].studentId, function (student) {
-        console.log("This is the payment ", payment);
         var data = {
           to: student.email,
           name: student.firstName,
@@ -48,16 +47,33 @@ exports.create = function(req, res){
         if (count) {
           Payment.findById(req.body._id, function (payment) {
             Student.findById(payment.studentId, function (student) {
+              var data = {
+                to: student.email,
+                name: student.firstName,
+                oldAmount : oldPayment.amount.toFixed(2),
+                newAmount : payment.amount.toFixed(2),
+                oldType: oldPayment.type,
+                newType: payment.type,
+                oldDate: moment(oldPayment.updatedAt).format("MMMM Do YYYY"),
+                newDate: moment(payment.updatedAt).format("MMMM Do YYYY")
+              };
+
               var opt = {
                 user: student.firstName + " " + student.lastName,
                 message: "updated a payment",
                 detail: "from " + oldPayment.type + " payment of $ " + oldPayment.amount.toFixed(2) + " to " + payment.type + " payment of $ " + payment.amount.toFixed(2)
               }
 
-              var feed = new Feed(opt);
+              email.sendUpdateInvoice(data, function (err, body) {
+                if (err) {
+                  return err;
+                }
 
-              feed.insert(function(feed){
-                res.redirect("/students/" + req.params.id);
+                var feed = new Feed(opt);
+
+                feed.insert(function(feed){
+                  res.redirect("/students/" + req.params.id);
+                });
               });
             });
           })
