@@ -72,13 +72,21 @@ exports.create = function(req, res){
 };
 
 exports.destroy = function(req, res){
-  Account.findById(req.params.id, function(account){
-    Account.removeById(req.params.id, function(count){
-      if(count){
-        res.redirect("/accounts", {notice: "Account Removed successfully"});
-      }else{
-        res.redirect("/accounts", {notice: "Account was not found"});
+  Account.removeById(req.params.id, function(count, account){
+    if(count){
+      var opt = {
+        user: account.cohort,
+        message: "account is deleted",
+        detail: "originaly from " + moment(account.startDate).format("MMMM Do YYYY") + " to " + moment(account.endDate).format("MMMM Do YYYY")
       }
-    });
+
+      var feed = new Feed(opt);
+
+      feed.insert(function (feed){
+        res.send({count: count});
+      });
+    }else{
+      res.send({count: 0});
+    }
   });
 }

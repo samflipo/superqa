@@ -69,7 +69,7 @@ Account.removeById = function(id, fn){
   accounts.findOne({_id: new ObjectID(id)}, function(err, record){
     if(record){
       accounts.remove({_id: new ObjectID(id)}, function(err, count){
-        fn(count);
+        fn(count, record);
       });
     }else{
       fn(new Error('Record was not found'));
