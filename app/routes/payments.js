@@ -3,7 +3,6 @@ var Student = require('../models/student.js');
 var Account = require('../models/account.js');
 var Feed = require('../models/feed.js');
 var email = require("../lib/email.js");
-// var stripe = require("stripe")("sk_test_N6aTItvtps3DUIgDckQxgLVe");
 var moment = require('moment');
 
 exports.create = function(req, res){
@@ -23,6 +22,7 @@ exports.create = function(req, res){
         };
 
         var opt = {
+          path: "/payments/" + payment[0]._id.toString(),
           user: student.firstName + " " + student.lastName,
           message: "made a payment",
           detail: payment[0].type + " payment of $ " + payment[0].amount.toFixed(2)
@@ -59,6 +59,7 @@ exports.create = function(req, res){
               };
 
               var opt = {
+                path: "/payments/" + payment._id.toString(),
                 user: student.firstName + " " + student.lastName,
                 message: "updated a payment",
                 detail: "from " + oldPayment.type + " payment of $ " + oldPayment.amount.toFixed(2) + " to " + payment.type + " payment of $ " + payment.amount.toFixed(2)
@@ -83,23 +84,6 @@ exports.create = function(req, res){
   }
 };
 
-// exports.stripPay = function(req, res){
-//   console.log('It is getting here =>', req.body);
-//   var stripeToken = req.body.stripeToken;
-//
-//   var charge = stripe.charges.create({
-//     amount: '2000', // amount in cents, again
-//     currency: "usd",
-//     source: stripeToken,
-//     description: "payinguser@example.com"
-//   }, function(err, charge) {
-//     if (err && err.type === 'StripeCardError') {
-//       res.send('The card has been declined');
-//     }
-//     res.send(charge);
-//   });
-// };
-
 exports.show = function(req, res){
   Payment.findById(req.params.id, function(payment){
     Student.findById(payment.studentId, function(student){
@@ -118,10 +102,24 @@ exports.send = function(req, res){
 
 exports.destroy = function(req, res){
   var studentId = req.params.studentId;
+  Payment.findById(req.params.id, function(payment){
+    Student.findById(studentId, function(student){
+      Payment.removeById(req.params.id, function(count){
+        if(count){
+          var opt = {
+            path: "#",
+            user: student.firstName + " " + student.lastName,
+            message: "deleted a payment",
+            detail: payment.type + " payment of $ " + payment.amount.toFixed(2)
+          }
 
-  Payment.removeById(req.params.id, function(count){
-    if(count){
-      res.send({count: count});
-    }
+          var feed = new Feed(opt);
+
+          feed.insert(function(feed){
+            res.send({count: count});
+          });
+        }
+      });
+    });
   });
 };

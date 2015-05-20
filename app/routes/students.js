@@ -44,6 +44,7 @@ exports.destroy = function(req, res){
       Student.removeById(req.params.id, function(count){
         if(count){
           var opt = {
+            path: "#",
             user: student.firstName + " " + student.lastName,
             message: "has been deleted from an account",
             detail: "with email " + student.email + " is deleted from account " + account.cohort
@@ -77,6 +78,7 @@ exports.create = function(req, res){
         };
 
         var opt = {
+          path: "/students/" + student[0]._id.toString(),
           user: student[0].firstName + " " + student[0].lastName,
           message: "got added to an account",
           detail: "with email " +student[0].email + " is added to account " + account.cohort
@@ -102,6 +104,7 @@ exports.create = function(req, res){
           Student.findById(req.body._id, function (student) {
             Account.findById(student.accountId, function (account) {
               var opt = {
+                path: "/students/" + student._id.toString(),
                 user: oldStudent.firstName + " " + oldStudent.lastName,
                 message: "student's detail got updated",
                 detail: "to " + student.firstName + " " + student.lastName + " with email " + student.email + " in account " + account.cohort

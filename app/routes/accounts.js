@@ -37,6 +37,7 @@ exports.create = function(req, res){
   if(!req.body._id){
     account.insert(function(account){
       var opt = {
+        path: "/accounts/" + account[0]._id.toString(),
         user: account[0].cohort,
         message: "account is created",
         detail: "from " + moment(account[0].startDate).format("MMMM Do YYYY") + " to " + moment(account[0].endDate).format("MMMM Do YYYY")
@@ -54,6 +55,7 @@ exports.create = function(req, res){
         if (count) {
           Account.findById(req.body._id, function (account) {
             var opt = {
+              path: "/accounts/" + account._id.toString(),
               user: oldAccount.cohort,
               message: "account is updated",
               detail: "to " + account.cohort + ", from " + moment(account.startDate).format("MMMM Do YYYY") + " to " + moment(account.endDate).format("MMMM Do YYYY")
@@ -75,6 +77,7 @@ exports.destroy = function(req, res){
   Account.removeById(req.params.id, function(count, account){
     if(count){
       var opt = {
+        path: "#",
         user: account.cohort,
         message: "account is deleted",
         detail: "originaly from " + moment(account.startDate).format("MMMM Do YYYY") + " to " + moment(account.endDate).format("MMMM Do YYYY")

@@ -9,17 +9,18 @@ block content
     .notice=notice
     if user.admin
       .main.accounts
-        h2 SuperQa Internal 
+        h2 SuperQA Internal 
           span.feed feed page
         br
         ul.top
-          each feed in feeds
-            li
-              .mainLine
-                a(href="#")=feed.user
-                span="  " + feed.message
-                span.fromDate=moment(feed.updatedAt).fromNow()
-              .secondLine=feed.detail
+          if feeds
+            each feed in feeds
+              li
+                .mainLine
+                  a(href=feed.path)=feed.user
+                  span="  " + feed.message
+                  span.fromDate=moment(feed.updatedAt).fromNow()
+                .secondLine=feed.detail
       .rightSideBar
         .searchBar
           .searchBarContainer
@@ -37,7 +38,7 @@ block content
           ul.cohortMenu 
             each account in accounts 
               li(data-accountId=account._id)
-                a(href="accounts/"+account._id)
+                a(href="/accounts/"+account._id)
                   span(class="square")=account.cohort.split(" ")[0][0].toUpperCase() 
                   span=account.cohort
                   span.fromDate.forAccount=moment(account.updatedAt).fromNow()

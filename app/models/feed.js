@@ -8,6 +8,7 @@ module.exports = Feed;
 
 function Feed(opt){
   this.user = opt.user;
+  this.path = opt.path;
   this.message = opt.message;
   this.detail = opt.detail;
   this.updatedAt = moment().format();
