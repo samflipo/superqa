@@ -40,12 +40,24 @@ exports.send = function(req, res){
 exports.destroy = function(req, res){
   Student.findById(req.params.id, function(student){
     var accountId = student.accountId;
-    Student.removeById(req.params.id, function(count){
-      if(count){
-        res.redirect("/accounts/"+ accountId.toString(), {notice: "Student Removed successfully"});
-      }else{
-        res.redirect("/accounts/"+ student.accountId.toString(), {notice: "Student was not found"});
-      }
+    Account.findById(accountId, function (account){
+      Student.removeById(req.params.id, function(count){
+        if(count){
+          var opt = {
+            user: student.firstName + " " + student.lastName,
+            message: "has been deleted from an account",
+            detail: "with email " + student.email + " is deleted from account " + account.cohort
+          }
+
+          var feed = new Feed(opt);
+
+          feed.insert(function (feed) {
+            res.send({count: count});
+          });
+        }else{
+          res.send({count: count});
+        }
+      });
     });
   });
 }
@@ -106,5 +118,4 @@ exports.create = function(req, res){
       });
     });
   }
-
 };
